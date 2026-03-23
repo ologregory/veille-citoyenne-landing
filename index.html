@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html class="h-full" lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Veille Citoyenne — Bientôt disponible</title>
+<meta name="description" content="L'application de veille citoyenne. Bientôt disponible."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "custom-midnight": "#0F1136",
+          "custom-accent": "#4F55E8",
+          "on-surface": "#191c1d"
+        },
+        fontFamily: {
+          "headline": ["Inter", "sans-serif"],
+          "body": ["Inter", "sans-serif"]
+        },
+        borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+      },
+    },
+  }
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; background-color: #0F1136; color: white; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  .tonal-glow { background: radial-gradient(circle at center, rgba(79, 85, 232, 0.15) 0%, rgba(15, 17, 54, 0) 70%); }
+</style>
+</head>
+<body class="flex flex-col min-h-screen bg-custom-midnight overflow-hidden selection:bg-custom-accent selection:text-white">
+<main class="flex-grow flex items-center justify-center p-6 tonal-glow">
+  <div class="max-w-md w-full text-center space-y-12">
+
+    <!-- Icon & Brand -->
+    <div class="flex flex-col items-center space-y-8">
+      <div class="relative">
+        <div class="absolute inset-0 bg-custom-accent blur-3xl opacity-20 rounded-full"></div>
+        <div class="relative bg-custom-accent w-24 h-24 rounded-3xl flex items-center justify-center shadow-2xl shadow-custom-accent/40 ring-1 ring-white/10">
+          <span class="material-symbols-outlined text-white text-5xl">notifications</span>
+        </div>
+      </div>
+      <div class="space-y-3">
+        <h1 class="text-4xl md:text-5xl font-black tracking-tight text-white uppercase">
+          Veille Citoyenne
+        </h1>
+        <p class="text-white/70 text-lg font-light tracking-wide">
+          Bientôt disponible.
+        </p>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div class="w-full space-y-4">
+      <form id="waitlist-form" class="flex flex-col gap-4">
+        <input
+          id="email-input"
+          class="w-full bg-white text-on-surface px-6 py-4 rounded-xl border-none focus:ring-2 focus:ring-custom-accent text-base placeholder:text-slate-400"
+          placeholder="Votre adresse e-mail"
+          required
+          type="email"
+        />
+        <button
+          type="submit"
+          class="w-full bg-custom-accent text-white px-8 py-4 rounded-xl font-bold hover:brightness-110 transition-all duration-300 shadow-lg shadow-custom-accent/20 active:scale-[0.98]"
+        >
+          Me prévenir
+        </button>
+      </form>
+      <p id="success-msg" class="hidden text-green-400 text-sm font-medium">
+        ✅ Merci ! Vous serez parmi les premiers informés.
+      </p>
+      <p id="error-msg" class="hidden text-red-400 text-sm font-medium">
+        Une erreur est survenue. Réessayez.
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<script>
+  document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const email = document.getElementById('email-input').value;
+    const btn = this.querySelector('button[type=submit]');
+    const successMsg = document.getElementById('success-msg');
+    const errorMsg = document.getElementById('error-msg');
+
+    btn.disabled = true;
+    btn.textContent = 'Envoi...';
+
+    try {
+      // Stockage local en attendant le backend
+      const emails = JSON.parse(localStorage.getItem('vc-waitlist') || '[]');
+      if (!emails.includes(email)) emails.push(email);
+      localStorage.setItem('vc-waitlist', JSON.stringify(emails));
+
+      this.style.display = 'none';
+      successMsg.classList.remove('hidden');
+    } catch(err) {
+      btn.disabled = false;
+      btn.textContent = 'Me prévenir';
+      errorMsg.classList.remove('hidden');
+    }
+  });
+</script>
+</body>
+</html>
