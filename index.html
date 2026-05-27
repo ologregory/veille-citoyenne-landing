@@ -523,7 +523,7 @@
       <div class="field"><label for="nom">Nom</label><input id="nom" type="text" placeholder="Votre nom"></div>
       <div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="vous@exemple.fr"></div>
       <div class="field"><label for="msg">Message</label><textarea id="msg" placeholder="Votre message"></textarea></div>
-      <button class="btn-ink" onclick="sendMsg()" style="margin-top:6px">Envoyer le message <span class="arr">&rarr;</span></button>
+      <button class="btn-ink" onclick="sendMsg(event)" style="margin-top:6px">Envoyer le message <span class="arr">&rarr;</span></button>
     </div>
   </div>
 </section>
@@ -570,7 +570,43 @@
     if(p==='y'){y.classList.add('active');m.classList.remove('active');v.textContent='2,99\u20AC';s.textContent='Factur\u00E9 35,88\u20AC par an.';}
     else{m.classList.add('active');y.classList.remove('active');v.textContent='3,99\u20AC';s.textContent='Sans engagement.';}
   }
-  function sendMsg(){var n=document.getElementById('nom').value.trim();alert(n?'Merci '+n+'. Votre message a bien \u00E9t\u00E9 pris en compte.':'Merci. Votre message a bien \u00E9t\u00E9 pris en compte.');}
+  async function sendMsg(ev){
+    var btn=ev&&ev.target?ev.target.closest('button'):null;
+    var n=document.getElementById('nom').value.trim();
+    var e=document.getElementById('email').value.trim();
+    var m=document.getElementById('msg').value.trim();
+    if(!m){alert('Merci d\u2019\u00E9crire votre message avant d\u2019envoyer.');return;}
+    if(!e){alert('Merci d\u2019indiquer votre email pour qu\u2019on puisse vous r\u00E9pondre.');return;}
+    var original=btn?btn.innerHTML:'';
+    if(btn){btn.disabled=true;btn.innerHTML='Envoi en cours\u2026';}
+    try{
+      var res=await fetch('https://api.web3forms.com/submit',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({
+          access_key:'6600b16b-049a-469d-ac5a-04c08bd23162',
+          subject:'Contact site \u2013 '+(n||'Visiteur'),
+          from_name:n||'Visiteur',
+          name:n||'(non renseign\u00E9)',
+          email:e,
+          message:m
+        })
+      });
+      var data=await res.json();
+      if(data.success){
+        alert('Merci '+(n||'')+'\u202F! Votre message a bien \u00E9t\u00E9 envoy\u00E9. Nous r\u00E9pondons g\u00E9n\u00E9ralement sous 48\u202Fheures.');
+        document.getElementById('nom').value='';
+        document.getElementById('email').value='';
+        document.getElementById('msg').value='';
+      }else{
+        alert('D\u00E9sol\u00E9, l\u2019envoi a \u00E9chou\u00E9. Vous pouvez nous \u00E9crire directement \u00E0 contact@veillecitoyenne.fr');
+      }
+    }catch(err){
+      alert('D\u00E9sol\u00E9, l\u2019envoi a \u00E9chou\u00E9. Vous pouvez nous \u00E9crire directement \u00E0 contact@veillecitoyenne.fr');
+    }finally{
+      if(btn){btn.disabled=false;btn.innerHTML=original;}
+    }
+  }
   document.getElementById('rc').textContent=38+Math.floor(Math.random()*12);
   function fmt(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0');}
   function countUp(el){
