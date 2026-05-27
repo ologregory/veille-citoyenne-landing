@@ -1,114 +1,616 @@
 <!DOCTYPE html>
-<html class="h-full" lang="fr">
+<html lang="fr">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Veille Citoyenne — Bientôt disponible</title>
-<meta name="description" content="L'application de veille citoyenne. Bientôt disponible."/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        colors: {
-          "custom-midnight": "#0F1136",
-          "custom-accent": "#4F55E8",
-          "on-surface": "#191c1d"
-        },
-        fontFamily: {
-          "headline": ["Inter", "sans-serif"],
-          "body": ["Inter", "sans-serif"]
-        },
-        borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-      },
-    },
-  }
-</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veille Citoyenne — L'alerte officielle, avant tout le monde</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  body { font-family: 'Inter', sans-serif; background-color: #0F1136; color: white; }
-  .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-  .tonal-glow { background: radial-gradient(circle at center, rgba(79, 85, 232, 0.15) 0%, rgba(15, 17, 54, 0) 70%); }
+  :root{
+    --ink:#13132A;--bg:#F5F6FA;--paper:#FFFFFF;--paper-2:#ECEEF4;--primary:#4F55E9;
+    --primary-soft:#ECEDFD;--line:#E2E5EE;--muted:#76737F;
+    --red:#D6453E;--orange:#E08A1E;--green:#3B8C6E;
+    --display:"Poppins",-apple-system,sans-serif;--sans:"Inter",-apple-system,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  html{overflow-x:clip;max-width:100%}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+  a{text-decoration:none;color:inherit}
+  ::selection{background:var(--primary);color:#fff}
+
+  h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-0.03em;line-height:1.02}
+  .display{font-size:clamp(2rem,7vw,5.6rem);font-weight:700;letter-spacing:-0.04em;overflow-wrap:break-word}
+  .display em{font-style:normal;color:var(--primary)}
+  .eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .sec-num{font-family:var(--display);font-weight:600;font-size:1rem;color:var(--primary)}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+  .rv.in{opacity:1;transform:none}
+
+  section{padding:150px 0}
+  .sec-tag{display:flex;align-items:baseline;gap:14px;margin-bottom:56px}
+  .hr-line{height:1px;background:var(--line);border:none;flex:1}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:60;background:rgba(245,246,250,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:1120px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:-.02em}
+  .mark{width:30px;height:30px;border:1.5px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;position:relative}
+  .mark::after{content:"";position:absolute;width:7px;height:7px;background:var(--primary);border-radius:50%;top:-2px;right:-2px}
+  .nav-links{display:flex;align-items:center;gap:34px;font-size:.9rem}
+  .nav-links a:not(.nav-cta){color:var(--muted);transition:color .2s}
+  .nav-links a:not(.nav-cta):hover{color:var(--ink)}
+  .nav-cta{font-weight:600;border-bottom:1.5px solid var(--primary);padding-bottom:2px;color:var(--ink)}
+  @media(max-width:820px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* HERO */
+  .hero{padding:80px 0 96px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero-badge{display:inline-flex;align-items:center;gap:10px;font-size:.82rem;color:var(--muted);margin-bottom:30px;letter-spacing:.02em;font-weight:500}
+  .ldot{width:7px;height:7px;border-radius:50%;background:var(--red);position:relative}
+  .ldot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--red);animation:pulse 1.8s ease-out infinite}
+  @keyframes pulse{70%,100%{transform:scale(3);opacity:0}}
+  .hero h1{margin-bottom:26px;max-width:100%;line-height:1.14}
+  .hero-lead{font-size:1.14rem;color:var(--muted);max-width:48ch;margin-bottom:40px;line-height:1.62;text-align:justify;-webkit-hyphens:auto;hyphens:auto}
+  .hero-actions{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+  .btn-ink{background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:.95rem;font-weight:600;padding:15px 30px;border-radius:999px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s}
+  .btn-ink:hover{transform:translatey(-3px);background:var(--primary)}
+  .btn-ink .arr{transition:transform .25s}
+  .btn-ink:hover .arr{transform:translateX(4px)}
+  .hero-soft{font-size:.86rem;color:var(--muted)}
+  .hero-soft b{color:var(--ink);font-weight:600}
+  /* store badges */
+  .store-badges{display:flex;gap:13px;flex-wrap:wrap}
+  .store-badge{display:inline-flex;align-items:center;gap:11px;background:var(--ink);color:#fff;padding:11px 20px;border-radius:14px;text-decoration:none;transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s}
+  .store-badge:hover{transform:translateY(-3px);background:var(--primary)}
+  .store-badge svg{width:22px;height:22px;flex-shrink:0;fill:#fff}
+  .store-badge .sb-top{display:block;font-size:.6rem;font-weight:500;opacity:.85;line-height:1;letter-spacing:.02em}
+  .store-badge .sb-big{display:block;font-size:1.02rem;font-weight:600;line-height:1.25;font-family:var(--display)}
+  .store-badge.cta-white{background:#fff;color:var(--ink)}
+  .store-badge.cta-white svg{fill:var(--ink)}
+  .store-badge.cta-white:hover{background:var(--ink);color:#fff}
+  .store-badge.cta-white:hover svg{fill:#fff}
+  /* NOTICE INSTALL iOS */
+  .ios-overlay{position:fixed;inset:0;background:rgba(15,17,54,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
+  .ios-overlay.open{display:flex}
+  .ios-modal{background:#fff;border-radius:20px;max-width:440px;width:100%;padding:28px 26px;box-shadow:0 24px 60px rgba(15,17,54,.28);position:relative;max-height:90vh;overflow-y:auto}
+  .ios-modal h3{font-family:var(--display);font-size:1.32rem;font-weight:700;color:var(--ink);margin:0 0 6px}
+  .ios-modal p.ios-sub{color:var(--muted);font-size:.95rem;line-height:1.6;margin:0 0 20px}
+  .ios-steps{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:14px}
+  .ios-steps li{display:flex;gap:13px;align-items:flex-start}
+  .ios-steps .ios-num{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--primary);color:#fff;font-size:.82rem;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:var(--display)}
+  .ios-steps .ios-txt{font-size:.95rem;color:var(--ink);line-height:1.55}
+  .ios-note{background:var(--primary-soft);border-radius:12px;padding:12px 14px;font-size:.86rem;color:var(--ink);line-height:1.55;margin-bottom:18px}
+  .ios-close{width:100%;background:var(--ink);color:#fff;border:none;border-radius:12px;padding:13px;font-size:.98rem;font-weight:600;cursor:pointer;font-family:var(--display)}
+  .ios-close:hover{background:var(--primary)}
+  .ios-open{display:block;width:100%;text-align:center;background:var(--primary);color:#fff;border:none;border-radius:12px;padding:13px;font-size:.98rem;font-weight:600;cursor:pointer;font-family:var(--display);text-decoration:none;margin-bottom:10px;box-sizing:border-box}
+  .ios-open:hover{background:var(--ink)}
+  .ios-x{position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:10px;border:none;background:#F1F2F8;color:var(--ink);font-size:1.2rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+  /* PHONE mockup */
+  .hero-phone-wrap{display:flex;justify-content:center;position:relative}
+  .hero-phone-wrap::before{content:"";position:absolute;width:330px;height:330px;background:radial-gradient(circle,var(--primary-soft) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);z-index:0}
+  .phone{position:relative;z-index:1;width:288px;background:var(--ink);border-radius:46px;padding:11px;box-shadow:0 40px 80px -20px rgba(19,19,42,.4)}
+  .phone-screen{background:linear-gradient(180deg,var(--primary) 0%,var(--primary) 140px,var(--paper) 140px,var(--paper) 100%);border-radius:36px;overflow:hidden;aspect-ratio:9/19;display:flex;flex-direction:column}
+  .phone-bar{display:flex;gap:5px;justify-content:center;padding:14px 0 0}
+  .pb-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5)}
+  .phone-head{padding:20px 22px 22px;color:#fff}
+  .ph-hello{font-size:.8rem;opacity:.85}
+  .ph-title{font-family:var(--display);font-weight:700;font-size:1.3rem;margin-top:3px;letter-spacing:-.02em}
+  .phone-body{padding:8px 16px 22px;display:flex;flex-direction:column;gap:11px}
+  .palert{display:flex;gap:11px;align-items:stretch;background:#fff;border-radius:0 14px 14px 14px;padding:13px 14px;box-shadow:0 4px 16px rgba(19,19,42,.06)}
+  .pa-bar{width:3px;border-radius:3px;background:var(--line);flex-shrink:0}
+  .palert.red .pa-bar{background:var(--red)}.palert.orange .pa-bar{background:var(--orange)}.palert.blue .pa-bar{background:var(--primary)}.palert.green .pa-bar{background:var(--green)}
+  .pa-t{font-size:.84rem;font-weight:600;line-height:1.3;color:var(--ink)}
+  .pa-m{font-size:.7rem;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.04em}
+
+  /* MARQUEE sources */
+  .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0;overflow:hidden;white-space:nowrap;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .mq-track{display:inline-flex;gap:48px;animation:scroll 40s linear infinite;font-family:var(--display);font-weight:600;font-size:1.15rem;letter-spacing:-.01em;color:var(--ink)}
+  .mq-track span::after{content:"·";margin-left:48px;color:var(--primary);font-style:normal}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* micro-animations dispersées */
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  .phone{animation:floaty 6s ease-in-out infinite}
+  .proof-item{transition:transform .3s cubic-bezier(.16,1,.3,1)}
+  .proof-item:hover .proof-big{color:var(--primary);transition:color .3s}
+  .proof-big{transition:color .3s}
+  .nav-links a:not(.nav-cta){position:relative}
+  .nav-links a:not(.nav-cta)::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:1.5px;background:var(--primary);transition:width .25s ease}
+  .nav-links a:not(.nav-cta):hover::after{width:100%}
+  @keyframes arrShift{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+  .pos-arr{animation:arrShift 2.4s ease-in-out infinite}
+  .pos-arr:nth-of-type(2){animation-delay:.4s}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+  .mark::after{animation:blink 2.4s ease-in-out infinite}
+  @media(max-width:860px){
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .hero h1{max-width:100%}
+    .hero-text{order:0}
+    .hero-phone-wrap{order:1}
+    .phone{width:240px}
+  }
+  @media(max-width:380px){
+    .display{font-size:1.85rem;line-height:1.15}
+    .hero-badge{font-size:.76rem;flex-wrap:wrap;gap:6px}
+    .store-badge{padding:10px 16px}
+    .hero-lead{font-size:1.05rem}
+  }
+
+  /* PROOF numbers */
+  .proof{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .proof-item{padding:0 30px;border-left:1px solid var(--line)}
+  .proof-item:first-child{padding-left:0;border-left:none}
+  @media(max-width:760px){
+    .proof{grid-template-columns:1fr 1fr;gap:32px 0}
+    .proof-item{padding:0 22px}
+    .proof-item:nth-child(odd){padding-left:0;border-left:none}
+  }
+  .proof-big{font-family:var(--display);font-size:3.3rem;font-weight:700;line-height:1;letter-spacing:-.03em}
+  .proof-big .u{color:var(--primary)}
+  .proof-lbl{font-size:.84rem;color:var(--muted);margin-top:14px;line-height:1.4}
+
+  /* FEATURES editorial list */
+  .feat-row{display:grid;grid-template-columns:auto 1fr 2fr;gap:34px;align-items:start;padding:38px 0;border-top:1px solid var(--line);transition:background .3s,padding-left .3s}
+  .feat-row:last-child{border-bottom:1px solid var(--line)}
+  .feat-row:hover{background:linear-gradient(90deg,var(--primary-soft),transparent 60%);padding-left:14px}
+  .feat-n{font-family:var(--display);font-weight:700;color:var(--primary);font-size:1.3rem;padding-top:2px;transition:transform .3s}
+  .feat-row:hover .feat-n{transform:translateY(-3px)}
+  .feat-h{font-family:var(--display);font-size:1.6rem;font-weight:600;line-height:1.12;letter-spacing:-.02em}
+  .feat-d{color:var(--muted);font-size:1.02rem;max-width:48ch;padding-top:6px;text-align:justify;-webkit-hyphens:auto;hyphens:auto}
+  @media(max-width:760px){.feat-row{grid-template-columns:1fr;gap:12px}}
+
+  /* HOW horizontal */
+  .how{background:var(--ink);color:var(--paper)}
+  .how .eyebrow,.how .sec-num{color:rgba(251,250,247,.6)}
+  .how .hr-line{background:rgba(251,250,247,.18)}
+  .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .how-step{padding:40px 34px 40px 0;border-right:1px solid rgba(251,250,247,.14)}
+  .how-step:last-child{border-right:none;padding-right:0}
+  .how-n{font-family:var(--display);font-size:2.2rem;font-weight:700;color:var(--primary);opacity:.95}
+  .how-step h3{font-family:var(--display);font-size:1.4rem;font-weight:600;letter-spacing:-.02em;margin:18px 0 12px}
+  .how-step p{color:rgba(251,250,247,.66);font-size:.98rem}
+  @media(max-width:760px){.how-grid{grid-template-columns:1fr}.how-step{border-right:none;border-bottom:1px solid rgba(251,250,247,.14);padding:34px 0}.how-step:last-child{border-bottom:none}}
+
+  /* POSITION */
+  .pos{display:grid;grid-template-columns:1fr auto 1.25fr auto 1fr;align-items:start;gap:0}
+  .pos-c{padding:34px 32px}
+  .pos-c.edge{color:var(--muted);padding-top:42px}
+  .pos-c.core{background:var(--paper);color:var(--ink);border:2px solid var(--primary);border-radius:14px;padding:40px 34px;box-shadow:0 18px 44px rgba(79,85,233,.12)}
+  .pos-step{font-family:var(--display);font-weight:700;color:var(--primary);margin-bottom:14px;font-size:1.3rem}
+  .pos-c h3{font-family:var(--display);font-size:1.5rem;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+  .pos-c.edge h3{font-size:1.35rem;color:var(--ink);font-weight:600}
+  .pos-c p{font-size:.96rem}
+  .pos-c.edge p{color:var(--muted)}
+  .pos-c.core p{color:var(--muted)}
+  .pos-tagline{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--ink)!important;letter-spacing:-.01em;line-height:1.35}
+  .pos-arr{color:var(--primary);font-size:1.4rem;padding:42px 8px 0}
+  @media(max-width:820px){.pos{grid-template-columns:1fr}.pos-c.edge{padding-top:34px}.pos-arr{transform:rotate(90deg);text-align:center;padding:10px 0}.pos-c.core{margin:6px 0}}
+  @media(max-width:820px){.pos{grid-template-columns:1fr}.pos-arr{transform:rotate(90deg);text-align:center;padding:10px 0}.pos-c.core{margin:6px 0}}
+
+  /* PRICING */
+  .pricing{background:var(--paper-2)}
+  .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--paper)}
+  .price-card{padding:48px 44px}
+  .price-card.free{border-right:1px solid var(--line)}
+  .price-card.pro{background:var(--ink);color:var(--paper);position:relative}
+  .pc-name{font-family:var(--display);font-weight:700;font-size:1.25rem;letter-spacing:-.01em;margin-bottom:8px}
+  .pc-amt{font-family:var(--display);font-size:3.4rem;font-weight:700;line-height:1;letter-spacing:-.03em}
+  .pc-amt small{font-family:var(--sans);font-size:1rem;color:var(--muted)}
+  .price-card.pro .pc-amt small{color:rgba(251,250,247,.6)}
+  .pc-sub{font-size:.86rem;color:var(--muted);margin-top:8px;min-height:20px}
+  .price-card.pro .pc-sub{color:rgba(251,250,247,.6)}
+  .toggle{display:inline-flex;border:1px solid rgba(251,250,247,.24);border-radius:999px;padding:3px;margin:16px 0 10px}
+  .toggle button{border:none;background:transparent;color:rgba(251,250,247,.7);padding:6px 16px;border-radius:999px;font-family:var(--sans);font-size:.8rem;font-weight:600;cursor:pointer}
+  .toggle button.active{background:var(--primary);color:#fff}
+  .pc-list{list-style:none;margin:24px 0 0}
+  .pc-list li{display:flex;gap:11px;padding:9px 0;font-size:.94rem;border-top:1px solid var(--line)}
+  .price-card.pro .pc-list li{border-top:1px solid rgba(251,250,247,.14)}
+  .pc-list li::before{content:"\2014";color:var(--primary);font-weight:700}
+  .pc-btn{margin-top:30px;width:100%;padding:14px;border-radius:999px;font-family:var(--sans);font-weight:600;font-size:.92rem;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink);transition:.2s}
+  .pc-btn:hover{background:var(--ink);color:var(--paper)}
+  .pc-btn.solid{background:var(--primary);color:#fff;border-color:var(--primary)}
+  .pc-btn.solid:hover{background:#fff;color:var(--primary)}
+  @media(max-width:760px){.price-grid{grid-template-columns:1fr}.price-card.free{border-right:none;border-bottom:1px solid var(--line)}}
+
+  /* FAQ */
+  .faq-item{border-top:1px solid var(--line)}
+  .faq-item:last-child{border-bottom:1px solid var(--line)}
+  .faq-item summary{cursor:pointer;list-style:none;padding:26px 0;display:flex;justify-content:space-between;align-items:baseline;gap:24px;font-family:var(--display);font-size:1.3rem;font-weight:600;letter-spacing:-.02em;transition:color .2s}
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary:hover{color:var(--primary)}
+  .faq-item .plus{font-family:var(--sans);font-size:1.5rem;color:var(--primary);transition:transform .3s;flex-shrink:0}
+  .faq-item[open] .plus{transform:rotate(45deg)}
+  .faq-item .ans{padding:0 0 28px;color:var(--muted);font-size:1.02rem;max-width:62ch}
+
+  /* CTA */
+  .cta{text-align:center;padding:150px 0}
+  .cta h2{font-size:clamp(2.2rem,5.5vw,4rem);font-weight:700;margin-bottom:24px}
+  .cta h2 em{color:var(--primary)}
+  .cta p{color:var(--muted);font-size:1.1rem;margin-bottom:40px}
+  .cta-chips{display:flex;gap:10px 24px;justify-content:center;flex-wrap:wrap;margin-top:46px;font-size:.82rem;color:var(--muted);letter-spacing:.04em}
+  .cta-chips span{display:inline-flex;align-items:center;gap:8px}
+  .cta-chips span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--primary)}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+  .ct-left h2{font-size:2.6rem;font-weight:700;margin-bottom:18px}
+  .ct-left p{color:var(--muted);max-width:34ch}
+  .ct-mail{display:inline-block;margin-top:24px;font-family:var(--display);font-weight:600;font-size:1.2rem;color:var(--primary);border-bottom:1px solid var(--primary)}
+  .field{margin-bottom:22px}
+  .field label{display:block;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+  .field input,.field textarea{width:100%;border:none;border-bottom:1px solid var(--line);background:transparent;padding:10px 0;font-family:var(--sans);font-size:1.05rem;color:var(--ink);transition:border-color .2s}
+  .field input:focus,.field textarea:focus{outline:none;border-bottom-color:var(--primary)}
+  .field textarea{resize:vertical;min-height:90px}
+  @media(max-width:760px){.contact-grid{grid-template-columns:1fr;gap:40px}}
+
+  /* FOOTER */
+  footer{background:var(--primary);color:#fff;padding:72px 0 40px}
+  .foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:54px}
+  .foot-brand{font-family:var(--display);font-weight:700;font-size:1.4rem;letter-spacing:-.02em;margin-bottom:14px;color:#fff}
+  .foot-tag{color:rgba(255,255,255,.78);font-size:.92rem;max-width:30ch;text-align:justify;-webkit-hyphens:auto;hyphens:auto}
+  .foot-col h4{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin-bottom:16px}
+  .foot-col a{display:block;color:rgba(255,255,255,.78);font-size:.92rem;padding:5px 0;transition:color .2s,padding-left .2s}
+  .foot-col a:hover{color:#fff;padding-left:5px}
+  .foot-bottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-top:26px;border-top:1px solid rgba(255,255,255,.22);font-size:.78rem;color:rgba(255,255,255,.7);letter-spacing:.03em}
+  .foot-legal{display:inline-flex;gap:18px;flex-wrap:wrap}
+  .foot-legal a{color:rgba(255,255,255,.85);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
+  .foot-legal a:hover{color:#fff;border-bottom-color:#fff}
+  @media(max-width:760px){.foot-top{grid-template-columns:1fr 1fr}}
+  /* ===== PASSE MOBILE GLOBALE ===== */
+  @media(max-width:760px){
+    /* espacements + marges latérales */
+    section{padding:74px 0!important}
+    .wrap{padding:0 26px}
+    .sec-tag{margin-bottom:34px}
+    /* contenu centré */
+    .feat-row,.feat-d,.feat-h,.proof-item,.proof-lbl,
+    .how-step,.foot-tag,.hero-soft{text-align:center}
+    /* MAIS les grands titres de section restent à gauche, avec leur tag */
+    .sec-tag{justify-content:flex-start}
+    .hero h1{text-align:left}
+    .pos h2,section > .wrap > h2,.wrap > h2{text-align:left}
+    /* badge live centré */
+    .hero-badge{justify-content:center;width:100%}
+    /* hero */
+    .hero{padding:40px 0 64px}
+    .hero-meta{margin-top:34px}
+    .hero-lead{text-align:left;hyphens:none;-webkit-hyphens:none;margin:0 0 40px}
+    .hero-right{align-items:center}
+    .hero-soft{width:100%}
+    /* boutons stores pleine largeur empilés */
+    .store-badges{flex-direction:column;width:100%;gap:10px}
+    .store-badges .store-badge{width:100%;justify-content:center}
+    .sec-num{font-size:.95rem}
+    /* fonctionnalités centrées (mise en page validée) */
+    .feat-row{display:block;padding:30px 0;text-align:center}
+    .feat-row:hover{padding-left:0;background:none}
+    .feat-n{display:block;margin-bottom:8px}
+    .feat-h{font-size:1.32rem;margin-bottom:8px}
+    .feat-d{font-size:.98rem;text-align:center;hyphens:none;-webkit-hyphens:none;max-width:100%;margin:0 auto}
+    /* chiffres centrés */
+    .proof-item{border-left:none!important;padding:0 8px}
+    .proof-lbl{max-width:24ch;margin:14px auto 0}
+    /* comment ça marche centré */
+    .how-grid{gap:38px;margin-top:10px}
+    .how-step{border-left:none!important;padding:0 6px;text-align:center}
+    /* position : cartes centrées, titre section à gauche */
+    .pos{gap:18px}
+    .pos-c{text-align:center}
+    .pos-c.edge{padding:18px 12px}
+    .pos-arr{text-align:center;padding:6px 0}
+    .pos-tagline{margin-left:auto;margin-right:auto}
+    /* tarifs centrés, listes à gauche pour lisibilité */
+    .price-card{text-align:center}
+    .price-card .feat-list,.price-card .pl{text-align:left;display:inline-block}
+    /* contact : titre Écrivez-nous aligné à gauche comme demandé */
+    .ct-left{text-align:left}
+    .ct-left h2{text-align:left;font-size:2rem}
+    #contact{padding-top:20px!important}
+    /* footer centré */
+    footer{padding:54px 0 30px}
+    .foot-top{grid-template-columns:1fr;gap:30px;margin-bottom:40px;text-align:center}
+    .foot-tag{text-align:center;margin:0 auto}
+    .foot-col a{display:block;text-align:center}
+    .foot-brand{font-size:1.4rem}
+    .foot-bottom{flex-direction:column;gap:8px;font-size:.74rem;line-height:1.5;text-align:center;justify-content:center}
+    /* FAQ : lisibilité, à gauche */
+    .faq-item summary{font-size:1.12rem;padding:22px 0;text-align:left}
+    .faq-item .ans{text-align:left}
+    /* CTA centré */
+    .cta{padding:90px 0;text-align:center}
+    .cta h2{text-align:center}
+    .chips{gap:8px 16px;justify-content:center}
+  }
+  @media(max-width:400px){
+    .foot-top{grid-template-columns:1fr}
+  }
 </style>
 </head>
-<body class="flex flex-col min-h-screen bg-custom-midnight overflow-hidden selection:bg-custom-accent selection:text-white">
-<main class="flex-grow flex items-center justify-center p-6 tonal-glow">
-  <div class="max-w-md w-full text-center space-y-12">
+<body>
 
-    <!-- Icon & Brand -->
-    <div class="flex flex-col items-center space-y-8">
-      <div class="relative">
-        <div class="absolute inset-0 bg-custom-accent blur-3xl opacity-20 rounded-full"></div>
-        <div class="relative bg-custom-accent w-24 h-24 rounded-3xl flex items-center justify-center shadow-2xl shadow-custom-accent/40 ring-1 ring-white/10">
-          <span class="material-symbols-outlined text-white text-5xl">notifications</span>
+<nav>
+  <div class="nav-inner">
+    <div class="brand"><span class="mark">V</span> Veille Citoyenne</div>
+    <div class="nav-links">
+      <a href="#sources">Sources</a>
+      <a href="#fonctionnement">Fonctionnement</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#telecharger" class="nav-cta">T&eacute;l&eacute;charger</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <div class="hero-badge rv"><span class="ldot"></span> 17 sources officielles &middot; <span id="rc">42</span> rappels publi&eacute;s aujourd'hui</div>
+      <h1 class="display rv" style="transition-delay:.06s">Pour les <span style="white-space:nowrap">consommateurs</span> qui ne laissent <em>rien au hasard.</em></h1>
+      <p class="hero-lead rv" style="transition-delay:.12s">Un produit contamin&eacute;, une arnaque, un m&eacute;dicament retir&eacute;, une alerte pr&egrave;s de chez vous... Nous croisons jour et nuit des sources officielles fran&ccedil;aises et europ&eacute;ennes. Vous recevez uniquement ce qui vous concerne.</p>
+      <div class="hero-actions rv" style="transition-delay:.18s">
+        <div class="store-badges">
+          <a href="#" class="store-badge" onclick="openAndroidGuide(event)" aria-label="Installer sur Android">
+            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+            <span><span class="sb-top">Sur Android</span><span class="sb-big">Installer l'application</span></span>
+          </a>
+          <a href="#" class="store-badge" onclick="openIosGuide(event)" aria-label="Installer sur iPhone via l'&eacute;cran d'accueil">
+            <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+            <span><span class="sb-top">Sur iPhone</span><span class="sb-big">Ajouter &agrave; l'&eacute;cran d'accueil</span></span>
+          </a>
+        </div>
+        <span class="hero-soft"><b>Essai Premium 14 jours.</b> Sans carte bancaire.</span>
+      </div>
+    </div>
+
+    <div class="hero-phone-wrap rv" style="transition-delay:.24s">
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="phone-bar"><span class="pb-dot"></span><span class="pb-dot"></span><span class="pb-dot"></span></div>
+          <div class="phone-head">
+            <div class="ph-hello">Bonjour</div>
+            <div class="ph-title">Mes alertes du jour</div>
+          </div>
+          <div class="phone-body">
+            <div class="palert red"><div class="pa-bar"></div><div><div class="pa-t">Rappel : lait infantile 2e &acirc;ge</div><div class="pa-m">RappelConso &middot; Risque &eacute;lev&eacute;</div></div></div>
+            <div class="palert orange"><div class="pa-bar"></div><div><div class="pa-t">Multiprise rappel&eacute;e, risque incendie</div><div class="pa-m">Safety Gate EU &middot; Mod&eacute;r&eacute;</div></div></div>
+            <div class="palert blue"><div class="pa-bar"></div><div><div class="pa-t">Restriction locale sur l'eau</div><div class="pa-m">Hub'Eau &middot; Information</div></div></div>
+            <div class="palert green"><div class="pa-bar"></div><div><div class="pa-t">Faux conseiller financier signal&eacute;</div><div class="pa-m">AMF &middot; Liste noire</div></div></div>
+          </div>
         </div>
       </div>
-      <div class="space-y-3">
-        <h1 class="text-4xl md:text-5xl font-black tracking-tight text-white uppercase">
-          Veille Citoyenne
-        </h1>
-        <p class="text-white/70 text-lg font-light tracking-wide">
-          Bientôt disponible.
-        </p>
+    </div>
+  </div>
+</header>
+
+<section class="wrap" style="padding-bottom:40px">
+  <div class="sec-tag rv"><span class="sec-num">01</span><span class="eyebrow">En chiffres</span><hr class="hr-line"></div>
+  <div class="proof rv">
+    <div class="proof-item"><div class="proof-big"><span class="cnt" data-to="15226">0</span></div><div class="proof-lbl">alertes agr&eacute;g&eacute;es depuis le lancement</div></div>
+    <div class="proof-item"><div class="proof-big"><span class="cnt" data-to="17">0</span></div><div class="proof-lbl">sources officielles fran&ccedil;aises et europ&eacute;ennes</div></div>
+    <div class="proof-item"><div class="proof-big"><span class="cnt" data-to="4137">0</span></div><div class="proof-lbl">alertes Safety Gate EU en 2024</div></div>
+    <div class="proof-item"><div class="proof-big" style="color:var(--primary)">1<span class="u">er</span></div><div class="proof-lbl">en France sur ce p&eacute;rim&egrave;tre multi-domaines</div></div>
+  </div>
+</section>
+
+<section class="wrap" id="fonctionnalites" style="padding-top:170px">
+  <div class="sec-tag rv"><span class="sec-num">02</span><span class="eyebrow">Ce qu'on fait pour vous</span><hr class="hr-line"></div>
+  <div class="feat-row rv"><div class="feat-n">1</div><div class="feat-h">Dix-sept sources, dans une seule App</div><div class="feat-d">RappelConso, ANSM, AMF, Bodacc, Safety Gate EU et bien d'autres, r&eacute;unies et normalis&eacute;es en une seule application coh&eacute;rente.</div></div>
+  <div class="feat-row rv"><div class="feat-n">2</div><div class="feat-h">Filtr&eacute; pour vous, et vous seul</div><div class="feat-d">Vous choisissez vos domaines. Vous ne recevez que les alertes qui vous concernent, sans le bruit de tout le reste.</div></div>
+  <div class="feat-row rv"><div class="feat-n">3</div><div class="feat-h">La conduite &agrave; tenir, pas juste l'alerte</div><div class="feat-d">Chaque notification renvoie &agrave; une fiche claire : motif, niveau de risque et marche &agrave; suivre, issue de la source officielle.</div></div>
+  <div class="feat-row rv"><div class="feat-n">4</div><div class="feat-h">Z&eacute;ro donn&eacute;e, par conception</div><div class="feat-d">Vos pr&eacute;f&eacute;rences restent sur votre appareil. Aucune donn&eacute;e personnelle identifiable collect&eacute;e. Aucune publicit&eacute;.</div></div>
+  <div class="feat-row rv"><div class="feat-n">5</div><div class="feat-h">Le bilan quotidien, pendant que vous dormez</div><div class="feat-d">L'application surveille la nuit et rassemble l'essentiel. Vous lisez votre bilan le matin, sans rien avoir &agrave; chercher.</div></div>
+  <div class="feat-row rv"><div class="feat-n">6</div><div class="feat-h">La surveillance environnementale, autour de vous</div><div class="feat-d">Qualit&eacute; de l'air, qualit&eacute; de l'eau, crues et m&eacute;t&eacute;o pr&egrave;s de chez vous. L'environnement qui vous entoure, surveill&eacute; en continu.</div></div>
+</section>
+
+<section class="how" id="fonctionnement">
+  <div class="wrap">
+    <div class="sec-tag rv"><span class="sec-num">03</span><span class="eyebrow">Comment &ccedil;a marche</span><hr class="hr-line"></div>
+    <h2 class="rv" style="font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;margin-bottom:60px;max-width:18ch">Configur&eacute; en deux minutes. Actif pour toujours.</h2>
+    <div class="how-grid">
+      <div class="how-step rv"><div class="how-n">01</div><h3>T&eacute;l&eacute;chargez</h3><p>Gratuite, sans compte ni donn&eacute;e personnelle. Quelques secondes suffisent.</p></div>
+      <div class="how-step rv" style="transition-delay:.1s"><div class="how-n">02</div><h3>Choisissez vos priorit&eacute;s</h3><p>S&eacute;lectionnez les domaines qui comptent. Tout reste stock&eacute; sur votre appareil.</p></div>
+      <div class="how-step rv" style="transition-delay:.2s"><div class="how-n">03</div><h3>Laissez veiller</h3><p>Une notification d&egrave;s la publication officielle d'une alerte qui vous touche.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="sources">
+  <div class="wrap">
+    <div class="sec-tag rv"><span class="sec-num">04</span><span class="eyebrow">Nos 17 sources officielles</span><hr class="hr-line"></div>
+    <h2 class="rv" style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;max-width:20ch;margin-bottom:44px">Uniquement des donn&eacute;es publiques.</h2>
+    <div class="marquee rv">
+      <div class="mq-track">
+        <span>RappelConso</span><span>ANSM</span><span>AMF</span><span>BODACC</span><span>Safety Gate EU</span><span>Vigicrues</span><span>M&eacute;t&eacute;o France</span><span>Hub'Eau</span><span>Atmo France</span><span>VigiEau</span><span>R&eacute;seau Sentinelles</span><span>Prix Carburants</span><span>FAO</span><span>Agreste</span><span>RNM Rungis</span><span>ESA/ANSES</span><span>DGCCRF</span>
+        <span>RappelConso</span><span>ANSM</span><span>AMF</span><span>BODACC</span><span>Safety Gate EU</span><span>Vigicrues</span><span>M&eacute;t&eacute;o France</span><span>Hub'Eau</span><span>Atmo France</span><span>VigiEau</span><span>R&eacute;seau Sentinelles</span><span>Prix Carburants</span><span>FAO</span><span>Agreste</span><span>RNM Rungis</span><span>ESA/ANSES</span><span>DGCCRF</span>
       </div>
     </div>
-
-    <!-- Form -->
-    <div class="w-full space-y-4">
-      <form id="waitlist-form" class="flex flex-col gap-4">
-        <input
-          id="email-input"
-          class="w-full bg-white text-on-surface px-6 py-4 rounded-xl border-none focus:ring-2 focus:ring-custom-accent text-base placeholder:text-slate-400"
-          placeholder="Votre adresse e-mail"
-          required
-          type="email"
-        />
-        <button
-          type="submit"
-          class="w-full bg-custom-accent text-white px-8 py-4 rounded-xl font-bold hover:brightness-110 transition-all duration-300 shadow-lg shadow-custom-accent/20 active:scale-[0.98]"
-        >
-          Me prévenir
-        </button>
-      </form>
-      <p id="success-msg" class="hidden text-green-400 text-sm font-medium">
-        ✅ Merci ! Vous serez parmi les premiers informés.
-      </p>
-      <p id="error-msg" class="hidden text-red-400 text-sm font-medium">
-        Une erreur est survenue. Réessayez.
-      </p>
-    </div>
-
   </div>
-</main>
+</section>
+
+<section class="wrap" style="padding-bottom:210px">
+  <div class="sec-tag rv"><span class="sec-num">05</span><span class="eyebrow">Notre position</span><hr class="hr-line"></div>
+  <h2 class="rv" style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;max-width:22ch;margin-bottom:54px">Entre l'&Eacute;tat et la presse, il y avait un vide. On l'a combl&eacute;.</h2>
+  <div class="pos rv">
+    <div class="pos-c edge"><div class="pos-step">1</div><h3>L'&Eacute;tat publie</h3><p>Officiel, valid&eacute;. Peu visible pour la plupart des citoyens.</p></div>
+    <div class="pos-arr">&rarr;</div>
+    <div class="pos-c core"><div class="pos-step">2</div><h3>Veille Citoyenne intercepte</h3><p>Filtr&eacute;, personnalis&eacute;, instantan&eacute;. Rien que pour vous.</p><p class="pos-tagline">Nous vous pr&eacute;venons avant que &ccedil;a devienne un sujet.</p></div>
+    <div class="pos-arr">&rarr;</div>
+    <div class="pos-c edge"><div class="pos-step">3</div><h3>La presse confirme</h3><p>Tout le monde l'apprend. Rarement &agrave; temps.</p></div>
+  </div>
+</section>
+
+<section class="pricing" id="tarifs">
+  <div class="wrap">
+    <div class="sec-tag rv"><span class="sec-num">06</span><span class="eyebrow">Tarifs</span><hr class="hr-line"></div>
+    <h2 class="rv" style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;max-width:20ch;margin-bottom:48px">Gratuit par d&eacute;faut. Premium si vous le souhaitez.</h2>
+    <div class="price-grid rv">
+      <div class="price-card free">
+        <div class="pc-name">Gratuit</div>
+        <div class="pc-amt">0&euro;</div>
+        <div class="pc-sub">Pour toujours. Sans engagement.</div>
+        <ul class="pc-list">
+          <li>RappelConso : Alimentation + 1 domaine au choix</li>
+          <li>Push alertes vitales (Listeria, Salmonella, E.coli...)</li>
+          <li>Consultation manuelle des alertes</li>
+          <li>Z&eacute;ro donn&eacute;e, z&eacute;ro publicit&eacute;</li>
+        </ul>
+        <button class="pc-btn" onclick="location.href='#telecharger'">Commencer gratuitement</button>
+      </div>
+      <div class="price-card pro">
+        <div class="pc-name" style="color:var(--paper)">Premium</div>
+        <div class="toggle"><button id="tM" onclick="setPlan('m')">Mensuel</button><button id="tY" class="active" onclick="setPlan('y')">Annuel</button></div>
+        <div class="pc-amt"><span id="pv">2,99&euro;</span> <small>/ mois</small></div>
+        <div class="pc-sub" id="ps">Factur&eacute; 35,88&euro; par an.</div>
+        <ul class="pc-list">
+          <li>ANSM, AMF, Bodacc inclus</li>
+          <li>Safety Gate EU complet</li>
+          <li>Sources environnement et alimentation</li>
+          <li>Prix carburants autour de vous</li>
+        </ul>
+        <button class="pc-btn solid" onclick="location.href='#telecharger'">Essayer 14 jours gratuit</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sec-tag rv"><span class="sec-num">07</span><span class="eyebrow">Questions fr&eacute;quentes</span><hr class="hr-line"></div>
+  <details class="faq-item rv"><summary>D'o&ugrave; viennent les alertes ?<span class="plus">+</span></summary><div class="ans">Exclusivement de sources officielles fran&ccedil;aises et europ&eacute;ennes : RappelConso, ANSM, AMF, Bodacc, Safety Gate EU et bien d'autres. Aucune information n'est &eacute;ditorialis&eacute;e.</div></details>
+  <details class="faq-item rv"><summary>Vraiment aucune donn&eacute;e collect&eacute;e ?<span class="plus">+</span></summary><div class="ans">Vos pr&eacute;f&eacute;rences sont stock&eacute;es localement sur votre appareil. Aucune donn&eacute;e personnelle identifiable n'est conserv&eacute;e sur nos serveurs par d&eacute;faut. Conforme RGPD.</div></details>
+  <details class="faq-item rv"><summary>Que re&ccedil;ois-je gratuitement ?<span class="plus">+</span></summary><div class="ans">Le domaine Alimentation de RappelConso plus un domaine de votre choix, les push d'alertes vitales (Listeria, Salmonella, E.coli et autres risques graves) et la consultation manuelle des alertes restent gratuits.</div></details>
+  <details class="faq-item rv"><summary>&Agrave; quoi sert le Premium ?<span class="plus">+</span></summary><div class="ans">Le Premium d&eacute;bloque les sources ANSM, AMF, Bodacc, Safety Gate EU complet ainsi que les sources environnement et alimentation, pour une couverture totale.</div></details>
+  <details class="faq-item rv"><summary>Quand suis-je pr&eacute;venu ?<span class="plus">+</span></summary><div class="ans">D&egrave;s la publication officielle de l'alerte. L'application veille en continu en arri&egrave;re-plan pour vous notifier au plus t&ocirc;t.</div></details>
+  <details class="faq-item rv"><summary>Puis-je r&eacute;silier &agrave; tout moment ?<span class="plus">+</span></summary><div class="ans">Oui. L'abonnement est sans engagement et r&eacute;siliable en un clic depuis l'application. Vous gardez l'acc&egrave;s jusqu'&agrave; la fin de la p&eacute;riode pay&eacute;e.</div></details>
+</section>
+
+<section class="cta" id="telecharger">
+  <div class="wrap">
+    <h2 class="rv">Pr&ecirc;t &agrave; &ecirc;tre inform&eacute;<br><em>avant tout le monde ?</em></h2>
+    <p class="rv" style="transition-delay:.08s">Installez Veille Citoyenne et laissez l'application veiller pour vous.</p>
+    <div class="rv" style="transition-delay:.16s">
+      <div class="store-badges" style="justify-content:center">
+        <a href="#" class="store-badge" onclick="openAndroidGuide(event)" aria-label="Installer sur Android">
+          <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+          <span><span class="sb-top">Sur Android</span><span class="sb-big">Installer l'application</span></span>
+        </a>
+        <a href="#" class="store-badge" onclick="openIosGuide(event)" aria-label="Installer sur iPhone via l'&eacute;cran d'accueil">
+          <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span><span class="sb-top">Sur iPhone</span><span class="sb-big">Ajouter &agrave; l'&eacute;cran d'accueil</span></span>
+        </a>
+      </div>
+    </div>
+    <div class="cta-chips rv" style="transition-delay:.24s">
+      <span>Gratuit</span><span>Donn&eacute;es officielles</span><span>Z&eacute;ro donn&eacute;e collect&eacute;e</span><span>Z&eacute;ro pub</span><span>Bient&ocirc;t sur l'App Store et Google Play</span>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="contact" style="padding-top:40px;padding-bottom:130px">
+  <div class="sec-tag rv"><span class="sec-num">08</span><span class="eyebrow">Nous contacter</span><hr class="hr-line"></div>
+  <div class="contact-grid">
+    <div class="ct-left rv">
+      <h2>Une question ?<br>&Eacute;crivez-nous.</h2>
+      <p>Nous r&eacute;pondons g&eacute;n&eacute;ralement sous 48 heures.</p>
+      <a class="ct-mail" href="mailto:contact@veillecitoyenne.fr">contact@veillecitoyenne.fr</a>
+    </div>
+    <div class="rv" style="transition-delay:.1s">
+      <div class="field"><label for="nom">Nom</label><input id="nom" type="text" placeholder="Votre nom"></div>
+      <div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="vous@exemple.fr"></div>
+      <div class="field"><label for="msg">Message</label><textarea id="msg" placeholder="Votre message"></textarea></div>
+      <button class="btn-ink" onclick="sendMsg()" style="margin-top:6px">Envoyer le message <span class="arr">&rarr;</span></button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">Veille Citoyenne</div>
+        <p class="foot-tag">L'application qui rend les alertes officielles visibles et accessibles &agrave; tous. Sans donn&eacute;e, sans publicit&eacute;.</p>
+      </div>
+      <div class="foot-col"><h4>Informations</h4><a href="qui-sommes-nous.html">Qui sommes-nous</a><a href="mission.html">Notre mission</a><a href="comment-ca-marche.html">Comment &ccedil;a marche</a><a href="#contact">Nous contacter</a></div>
+      <div class="foot-col"><h4>Application</h4><a href="#telecharger">T&eacute;l&eacute;charger</a><a href="#fonctionnalites">Fonctionnalit&eacute;s</a><a href="#tarifs">Tarifs</a><a href="#contact">FAQ</a></div>
+      <div class="foot-col"><h4>L&eacute;gal</h4><a href="mentions-legales.html">Mentions l&eacute;gales</a><a href="cgvu.html">CGVU</a><a href="confidentialite.html">Confidentialit&eacute;</a><a href="sources-licences.html">Sources &amp; licences</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>Solaz Gr&eacute;gory &mdash; Entrepreneur Individuel &middot; SIRET 804 334 365 00017 &middot; Toulouse, France</span>
+      <span>Marque INPI n&deg; 26-085-9876674</span>
+    </div>
+  </div>
+</footer>
+
+<!-- NOTICE INSTALLATION ANDROID -->
+<div class="ios-overlay" id="androidOverlay" onclick="if(event.target===this)closeAndroidGuide()">
+  <div class="ios-modal" role="dialog" aria-modal="true" aria-labelledby="androidTitle">
+    <button class="ios-x" onclick="closeAndroidGuide()" aria-label="Fermer">&times;</button>
+    <h3 id="androidTitle">Installer sur Android</h3>
+    <p class="ios-sub">L'application arrivera bient&ocirc;t sur le Google Play Store. En attendant, vous pouvez d&eacute;j&agrave; l'installer en quelques secondes depuis Chrome.</p>
+    <ul class="ios-steps">
+      <li><span class="ios-num">1</span><span class="ios-txt">Ouvrez <a href="https://app.veillecitoyenne.fr" target="_blank" rel="noopener" style="color:var(--primary);font-weight:700;text-decoration:none">app.veillecitoyenne.fr</a> dans <b>Chrome</b> sur votre t&eacute;l&eacute;phone.</span></li>
+      <li><span class="ios-num">2</span><span class="ios-txt">Si une banni&egrave;re <b>&laquo; Installer l'application &raquo;</b> appara&icirc;t, appuyez dessus. Sinon, ouvrez le menu <b>&#8942;</b> en haut &agrave; droite.</span></li>
+      <li><span class="ios-num">3</span><span class="ios-txt">S&eacute;lectionnez <b>&laquo; Installer l'application &raquo;</b> ou <b>&laquo; Ajouter &agrave; l'&eacute;cran d'accueil &raquo;</b>.</span></li>
+      <li><span class="ios-num">4</span><span class="ios-txt">Confirmez. L'ic&ocirc;ne appara&icirc;t sur votre &eacute;cran d'accueil.</span></li>
+    </ul>
+    <div class="ios-note">Pour recevoir les <b>alertes critiques par notification</b>, ouvrez l'application depuis l'ic&ocirc;ne de l'&eacute;cran d'accueil et autorisez les notifications.</div>
+    <a class="ios-open" href="https://app.veillecitoyenne.fr" target="_blank" rel="noopener">Ouvrir l'application dans Chrome</a>
+    <button class="ios-close" onclick="closeAndroidGuide()">J'ai compris</button>
+  </div>
+</div>
 
 <script>
-  document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const email = document.getElementById('email-input').value;
-    const btn = this.querySelector('button[type=submit]');
-    const successMsg = document.getElementById('success-msg');
-    const errorMsg = document.getElementById('error-msg');
-
-    btn.disabled = true;
-    btn.textContent = 'Envoi...';
-
-    try {
-      // Stockage local en attendant le backend
-      const emails = JSON.parse(localStorage.getItem('vc-waitlist') || '[]');
-      if (!emails.includes(email)) emails.push(email);
-      localStorage.setItem('vc-waitlist', JSON.stringify(emails));
-
-      this.style.display = 'none';
-      successMsg.classList.remove('hidden');
-    } catch(err) {
-      btn.disabled = false;
-      btn.textContent = 'Me prévenir';
-      errorMsg.classList.remove('hidden');
-    }
-  });
+  function setPlan(p){
+    var m=document.getElementById('tM'),y=document.getElementById('tY'),v=document.getElementById('pv'),s=document.getElementById('ps');
+    if(p==='y'){y.classList.add('active');m.classList.remove('active');v.textContent='2,99\u20AC';s.textContent='Factur\u00E9 35,88\u20AC par an.';}
+    else{m.classList.add('active');y.classList.remove('active');v.textContent='3,99\u20AC';s.textContent='Sans engagement.';}
+  }
+  function sendMsg(){var n=document.getElementById('nom').value.trim();alert(n?'Merci '+n+'. Votre message a bien \u00E9t\u00E9 pris en compte.':'Merci. Votre message a bien \u00E9t\u00E9 pris en compte.');}
+  document.getElementById('rc').textContent=38+Math.floor(Math.random()*12);
+  function fmt(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0');}
+  function countUp(el){
+    var to=parseInt(el.getAttribute('data-to'),10),dur=1400,t0=null;
+    function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/dur,1);var e=1-Math.pow(1-p,3);el.textContent=fmt(Math.floor(e*to));if(p<1)requestAnimationFrame(step);else el.textContent=fmt(to);}
+    requestAnimationFrame(step);
+  }
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){countUp(e.target);cio.unobserve(e.target);}});},{threshold:.6});
+  document.querySelectorAll('.cnt').forEach(function(el){cio.observe(el);});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  // sécurité : révéler immédiatement le hero, et tout le reste si l'observer ne se déclenche pas
+  document.querySelectorAll('.hero .rv').forEach(function(el){el.classList.add('in');});
+  setTimeout(function(){document.querySelectorAll('.rv:not(.in)').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<window.innerHeight)el.classList.add('in');});},700);
+  // Notice installation iOS
+  function openIosGuide(e){if(e)e.preventDefault();document.getElementById('iosOverlay').classList.add('open');document.body.style.overflow='hidden';}
+  function closeIosGuide(){document.getElementById('iosOverlay').classList.remove('open');document.body.style.overflow='';}
+  function openAndroidGuide(e){if(e)e.preventDefault();document.getElementById('androidOverlay').classList.add('open');document.body.style.overflow='hidden';}
+  function closeAndroidGuide(){document.getElementById('androidOverlay').classList.remove('open');document.body.style.overflow='';}
+  window.openIosGuide=openIosGuide;window.closeIosGuide=closeIosGuide;
+  window.openAndroidGuide=openAndroidGuide;window.closeAndroidGuide=closeAndroidGuide;
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeIosGuide();closeAndroidGuide();}});
 </script>
+
+<!-- NOTICE INSTALLATION iOS -->
+<div class="ios-overlay" id="iosOverlay" onclick="if(event.target===this)closeIosGuide()">
+  <div class="ios-modal" role="dialog" aria-modal="true" aria-labelledby="iosTitle">
+    <button class="ios-x" onclick="closeIosGuide()" aria-label="Fermer">&times;</button>
+    <h3 id="iosTitle">Installer sur iPhone</h3>
+    <p class="ios-sub">L'application arrivera bient&ocirc;t sur l'App Store. En attendant, vous pouvez d&eacute;j&agrave; l'installer en quelques secondes depuis Safari.</p>
+    <ul class="ios-steps">
+      <li><span class="ios-num">1</span><span class="ios-txt">Ouvrez <a href="https://app.veillecitoyenne.fr" target="_blank" rel="noopener" style="color:var(--primary);font-weight:700;text-decoration:none">app.veillecitoyenne.fr</a> dans <b>Safari</b> sur votre iPhone.</span></li>
+      <li><span class="ios-num">2</span><span class="ios-txt">Appuyez sur le bouton <b>Partager</b> (le carr&eacute; avec une fl&egrave;che vers le haut), en bas de l'&eacute;cran.</span></li>
+      <li><span class="ios-num">3</span><span class="ios-txt">S&eacute;lectionnez <b>&laquo; Sur l'&eacute;cran d'accueil &raquo;</b>.</span></li>
+      <li><span class="ios-num">4</span><span class="ios-txt">Appuyez sur <b>Ajouter</b>. L'ic&ocirc;ne appara&icirc;t sur votre &eacute;cran d'accueil.</span></li>
+    </ul>
+    <div class="ios-note">Pour recevoir les <b>alertes critiques par notification</b>, ouvrez l'application depuis l'ic&ocirc;ne de l'&eacute;cran d'accueil et autorisez les notifications. Sur iPhone, les notifications n&eacute;cessitent iOS&nbsp;16.4 ou une version plus r&eacute;cente.</div>
+    <a class="ios-open" href="https://app.veillecitoyenne.fr" target="_blank" rel="noopener">Ouvrir l'application dans Safari</a>
+    <button class="ios-close" onclick="closeIosGuide()">J'ai compris</button>
+  </div>
+</div>
 </body>
 </html>
- 

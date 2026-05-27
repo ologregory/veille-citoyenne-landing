@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conditions Générales (CGVU) — Veille Citoyenne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#13132A;--bg:#F5F6FA;--paper:#FFFFFF;--paper-2:#ECEEF4;--primary:#4F55E9;--primary-soft:#ECEDFD;--line:#E2E5EE;--muted:#76737F;--display:"Poppins",-apple-system,sans-serif;--sans:"Inter",-apple-system,sans-serif;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:clip;max-width:100%}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{text-decoration:none;color:inherit}
+  ::selection{background:var(--primary);color:#fff}
+  .wrap{max-width:860px;margin:0 auto;padding:0 26px}
+  h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-0.03em;line-height:1.08}
+
+  nav{position:sticky;top:0;z-index:60;background:rgba(245,246,250,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:1080px;margin:0 auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:1.15rem;font-family:var(--display);letter-spacing:-.02em}
+  .mark{width:32px;height:32px;border:1.5px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;position:relative;font-weight:700}
+  .mark::after{content:"";position:absolute;width:7px;height:7px;background:var(--primary);border-radius:50%;top:-1px;right:-1px;animation:blink 2.4s ease-in-out infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+  .nav-links{display:flex;align-items:center;gap:28px;font-size:.92rem}
+  .nav-links a:not(.nav-cta){color:var(--muted);font-weight:500}
+  .nav-links a:not(.nav-cta):hover{color:var(--ink)}
+  .nav-cta{font-weight:600;border-bottom:1.5px solid var(--primary);padding-bottom:2px;color:var(--ink)}
+  @media(max-width:820px){.nav-links a:not(.nav-cta){display:none}}
+
+  .page-hero{padding:80px 0 50px}
+  .crumb{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);margin-bottom:26px;font-weight:500}
+  .crumb a:hover{color:var(--primary)}
+  .crumb .arr{color:var(--primary)}
+  .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--primary);font-weight:700;margin-bottom:16px}
+  .page-hero h1{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:700;letter-spacing:-.03em}
+  .page-hero h1 .vio{color:var(--primary)}
+  .page-hero .lead{font-size:1.18rem;color:var(--muted);max-width:54ch;margin-top:22px;line-height:1.6}
+
+  .content{padding:20px 0 60px}
+  .content .block{padding:30px 0;border-top:1px solid var(--line)}
+  .content .block:first-child{border-top:none}
+  .content h2{font-size:1.5rem;margin-bottom:14px;letter-spacing:-.02em}
+  .content p{font-size:1.08rem;color:#3a3947;line-height:1.7;margin-bottom:16px}
+  .content p:last-child{margin-bottom:0}
+  .content .lead-p{font-size:1.18rem;color:var(--ink)}
+  .pull{background:var(--paper);border:1.5px solid var(--primary);border-radius:0 16px 16px 16px;padding:28px 30px;margin:10px 0;box-shadow:0 14px 40px rgba(79,85,233,.1)}
+  .pull p{font-family:var(--display);font-weight:600;font-size:1.25rem;color:var(--ink);line-height:1.4;margin:0;letter-spacing:-.01em}
+  .signature{display:flex;align-items:center;gap:14px;margin-top:14px;padding-top:26px;border-top:1px solid var(--line)}
+  .sig-av{width:50px;height:50px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:1.15rem;flex-shrink:0}
+  .sig-meta b{display:block;font-family:var(--display);font-weight:600;font-size:1rem}
+  .sig-meta span{font-size:.88rem;color:var(--muted)}
+
+  .cta-block{text-align:center;padding:80px 0 30px}
+  .cta-block h2{font-size:clamp(2rem,5vw,3.4rem);font-weight:700;margin-bottom:22px;letter-spacing:-.03em;line-height:1.1}
+  .cta-block h2 em{color:var(--primary);font-style:italic}
+  .cta-block p{color:var(--muted);font-size:1.1rem;margin-bottom:38px}
+  .store-badges{display:flex;gap:13px;flex-wrap:wrap;justify-content:center}
+  .store-badge{display:inline-flex;align-items:center;gap:11px;background:var(--ink);color:#fff;padding:11px 20px;border-radius:14px;text-decoration:none;transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s}
+  .store-badge:hover{transform:translateY(-3px);background:var(--primary)}
+  .store-badge svg{width:22px;height:22px;flex-shrink:0;fill:#fff}
+  .store-badge .sb-top{display:block;font-size:.6rem;font-weight:500;opacity:.85;line-height:1;letter-spacing:.02em}
+  .store-badge .sb-big{display:block;font-size:1.02rem;font-weight:600;line-height:1.25;font-family:var(--display)}
+  .cta-chips{display:flex;gap:10px 24px;justify-content:center;flex-wrap:wrap;margin-top:42px;font-size:.82rem;color:var(--muted);letter-spacing:.04em}
+  .cta-chips span{display:inline-flex;align-items:center;gap:8px}
+  .cta-chips span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--primary)}
+
+  /* legal clean */
+  .legal{padding:10px 0 70px}
+  .legal .upd{font-size:.88rem;color:var(--muted);margin-bottom:34px}
+  .legal h2{font-size:1.32rem;font-weight:700;letter-spacing:-.02em;margin:38px 0 12px}
+  .legal h2:first-of-type{margin-top:0}
+  .legal h3{font-size:1.02rem;font-weight:600;font-family:var(--display);margin:20px 0 6px;color:var(--ink)}
+  .legal p{font-size:1.04rem;color:#3a3947;line-height:1.75;margin-bottom:14px}
+  .legal a{color:var(--primary);font-weight:600}
+  .legal .end{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-size:.92rem;color:var(--muted);line-height:1.7}
+  .legal ul{margin:6px 0 14px;padding-left:20px}
+  .legal li{font-size:1.04rem;color:#3a3947;line-height:1.7;margin-bottom:5px}
+  .legal .def{margin-bottom:10px}
+  .legal .def .dt{font-weight:600;color:var(--ink);font-family:var(--display);font-size:1rem}
+  .legal .def .dd{font-size:1.02rem;color:#3a3947;line-height:1.7}
+  .legal .idx{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px}
+  .legal .idx .lvl{color:#fff;border-radius:8px;padding:4px 12px;font-size:.72rem;font-weight:700;min-width:90px;text-align:center;flex-shrink:0;letter-spacing:.04em}
+  .legal .idx p{margin:0;font-size:1rem}
+  .legal .box{background:#F9FAFB;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0;font-size:.96rem;color:#4B5563;line-height:1.7}
+  .legal .box.ital{font-style:italic}
+  .legal .box .bt{font-size:1.05rem;font-weight:700;color:var(--primary);margin-bottom:4px;font-family:var(--display)}
+  footer{background:var(--primary);color:#fff;padding:72px 0 40px}
+  .foot-wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  .foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:54px}
+  .foot-brand{font-family:var(--display);font-weight:700;font-size:1.4rem;letter-spacing:-.02em;margin-bottom:14px;color:#fff}
+  .foot-tag{color:rgba(255,255,255,.82);font-size:.92rem;max-width:30ch}
+  .foot-col h4{font-family:var(--display);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin-bottom:16px;font-weight:700}
+  .foot-col a{display:block;color:rgba(255,255,255,.8);font-size:.92rem;padding:6px 0;transition:padding-left .25s,color .25s}
+  .foot-col a:hover{color:#fff;padding-left:5px}
+  .foot-bottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-top:26px;border-top:1px solid rgba(255,255,255,.25);font-size:.78rem;color:rgba(255,255,255,.7);letter-spacing:.03em}
+  @media(max-width:760px){
+    .foot-top{grid-template-columns:1fr;gap:30px;margin-bottom:40px;text-align:center}
+    .foot-tag{margin:0 auto;text-align:center}
+    .foot-col a{text-align:center}
+    .foot-bottom{flex-direction:column;gap:8px;text-align:center}
+    .cta-block{padding:60px 0 20px}
+    .store-badges{flex-direction:column;width:100%;gap:10px}
+    .store-badge{width:100%;justify-content:center}
+    .signature{flex-direction:column;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="mark">V</span> Veille Citoyenne</a>
+    <div class="nav-links">
+      <a href="index.html#sources">Sources</a>
+      <a href="index.html#fonctionnement">Fonctionnement</a>
+      <a href="index.html#tarifs">Tarifs</a>
+      <a href="index.html#telecharger" class="nav-cta">T&eacute;l&eacute;charger</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero wrap">
+  <div class="crumb"><a href="index.html">Accueil</a> <span class="arr">&rsaquo;</span> <span>Conditions G&eacute;n&eacute;rales</span></div>
+  <h1>Conditions G&eacute;n&eacute;rales <span class="vio">de Vente et d'Utilisation.</span></h1>
+</header>
+
+<main class="legal wrap">
+  <p class="upd">Date de derni&egrave;re mise &agrave; jour : 12 mai 2026</p>
+
+  <h2>Pr&eacute;ambule</h2>
+  <p>Les pr&eacute;sentes Conditions G&eacute;n&eacute;rales de Vente et d'Utilisation (ci-apr&egrave;s les &laquo;&nbsp;Conditions G&eacute;n&eacute;rales&nbsp;&raquo;) ont pour objet de d&eacute;finir les conditions dans lesquelles l'Utilisateur peut acc&eacute;der &agrave; l'application mobile VEILLE CITOYENNE (ci-apr&egrave;s l'&laquo;&nbsp;Application&nbsp;&raquo;) &eacute;dit&eacute;e par SOLAZ GREGORY, entrepreneur individuel, exer&ccedil;ant sous le num&eacute;ro SIREN 804 334 365, dont le si&egrave;ge est situ&eacute; 20 rue Louis Blanc, 31400 Toulouse (ci-apr&egrave;s &laquo;&nbsp;Veille Citoyenne&nbsp;&raquo;) et utiliser ses services, en version gratuite (ci-apr&egrave;s &laquo;&nbsp;offre Freemium&nbsp;&raquo;) comme en version payante (ci-apr&egrave;s &laquo;&nbsp;offre Premium&nbsp;&raquo;), (ci-apr&egrave;s individuellement d&eacute;nomm&eacute;s une &laquo;&nbsp;Partie&nbsp;&raquo; et ensemble les &laquo;&nbsp;Parties&nbsp;&raquo;).</p>
+  <p>L'Application a pour objet de recenser, d'agr&eacute;ger et de notifier des informations et alertes issues de bases de donn&eacute;es publiques, notamment et sans s'y limiter les alertes de suivi de consommation, les avis de l'Agence nationale de s&eacute;curit&eacute; sanitaire de l'alimentation, de l'environnement et du travail (ANSES), Rappel Conso, les alertes de vigilance eau (VigiEau), les pr&eacute;visions et alertes m&eacute;t&eacute;orologiques (M&eacute;t&eacute;o-France), les avis du Bulletin officiel des annonces civiles et commerciales (BODACC), ainsi que toute autre source publique int&eacute;gr&eacute;e &agrave; l'Application.</p>
+  <p>L'Application a un caract&egrave;re strictement informatif. Elle constitue un outil de relais et d'agr&eacute;gation de donn&eacute;es publiques et ne saurait se substituer aux canaux officiels d'information et de gestion de crise mis en place par les autorit&eacute;s comp&eacute;tentes.</p>
+  <p>L'utilisation de l'Application implique l'acceptation pleine et enti&egrave;re des Conditions G&eacute;n&eacute;rales. Si l'Utilisateur n'accepte pas ces conditions, il doit s'abstenir d'utiliser l'Application. L'acceptation par l'Utilisateur des Conditions G&eacute;n&eacute;rales est mat&eacute;rialis&eacute;e par le fait pour l'Utilisateur de cocher la case attenante &agrave; la mention &laquo;&nbsp;J'ai lu et j'accepte les Conditions G&eacute;n&eacute;rales&nbsp;&raquo; lors de sa premi&egrave;re connexion &agrave; l'Application, &agrave; chaque premi&egrave;re connexion cons&eacute;cutive &agrave; une modification substantielle des Conditions G&eacute;n&eacute;rales et lors de la souscription &agrave; l'Offre Premium le cas &eacute;ch&eacute;ant. Cette d&eacute;marche &eacute;quivaut pour l'Utilisateur &agrave; reconna&icirc;tre qu'il a pris pleinement connaissance et qu'il approuve, sans exception ni r&eacute;serve, l'ensemble des Conditions G&eacute;n&eacute;rales indiqu&eacute;es ci-apr&egrave;s. Toute utilisation de l'Application implique ainsi de plein droit l'acceptation sans r&eacute;serve de l'int&eacute;gralit&eacute; des Conditions G&eacute;n&eacute;rales.</p>
+
+  <h2>Article 1 &ndash; D&eacute;finitions</h2>
+  <p>Les termes ci-dessous, lorsqu'ils sont employ&eacute;s avec une majuscule dans les Conditions G&eacute;n&eacute;rales, ont la signification suivante&nbsp;:</p>
+  <p><strong>&laquo;&nbsp;Application&nbsp;&raquo;&nbsp;:</strong> d&eacute;signe l'application VEILLE CITOYENNE disponible sur terminaux mobiles et ordinateurs, accessible notamment via les plateformes iOS (App Store) et Android (Google Play Store).</p>
+  <p><strong>&laquo;&nbsp;Compte&nbsp;&raquo;&nbsp;:</strong> d&eacute;signe l'espace personnel cr&eacute;&eacute; par l'Utilisateur dans le cadre de l'utilisation de l'Application lui permettant d'acc&eacute;der &agrave; l'Offre Premium.</p>
+  <p><strong>&laquo;&nbsp;Conditions G&eacute;n&eacute;rales&nbsp;&raquo;</strong> d&eacute;signe les pr&eacute;sentes conditions g&eacute;n&eacute;rales de vente et d'utilisation.</p>
+  <p><strong>&laquo;&nbsp;Contenu&nbsp;&raquo;&nbsp;:</strong> d&eacute;signe l'ensemble des donn&eacute;es, informations, alertes, textes et autres &eacute;l&eacute;ments mis &agrave; disposition via l'Application, provenant principalement de bases de donn&eacute;es publiques.</p>
+  <p><strong>&laquo;&nbsp;Veille Citoyenne&nbsp;&raquo;&nbsp;:</strong> d&eacute;signe SOLAZ GREGORY, entrepreneur individuel, exer&ccedil;ant sous le num&eacute;ro SIREN 804 334 365, dont le si&egrave;ge est situ&eacute; 20 rue Louis Blanc, 31400 Toulouse</p>
+  <p><strong>&laquo;&nbsp;Offre Freemium&nbsp;&raquo;&nbsp;:</strong> d&eacute;signe l'acc&egrave;s gratuit &agrave; l'Application permettant de consulter un ensemble limit&eacute; d'alertes et de fonctionnalit&eacute;s.</p>
+  <p><strong>&laquo;&nbsp;Offre Premium&nbsp;&raquo;&nbsp;:</strong> d&eacute;signe l'abonnement payant (mensuel ou annuel) donnant acc&egrave;s &agrave; l'ensemble des fonctionnalit&eacute;s de l'Application, incluant notamment des alertes personnalis&eacute;es, des notifications push &eacute;largies, un bilan quotidien et une fonctionnalit&eacute; de g&eacute;olocalisation facultative.</p>
+  <p><strong>&laquo;&nbsp;Politique de confidentialit&eacute;&nbsp;&raquo;</strong>&nbsp;: d&eacute;signe le document distinct, accessible depuis l'Application, qui d&eacute;crit les modalit&eacute;s de collecte, de traitement et de protection des donn&eacute;es &agrave; caract&egrave;re personnel des Utilisateurs.</p>
+  <p><strong>&laquo;&nbsp;RGPD&nbsp;&raquo;</strong> d&eacute;signe le R&egrave;glement (UE) 2016/679 du Parlement europ&eacute;en et du Conseil du 27 avril 2016 (&laquo;&nbsp;R&egrave;glement G&eacute;n&eacute;ral sur la Protection des Donn&eacute;es&nbsp;&raquo;). Par ailleurs, lorsqu'ils sont utilis&eacute;s dans les Conditions G&eacute;n&eacute;rales et ses &eacute;ventuelles annexes, les termes &laquo;&nbsp;donn&eacute;es &agrave; caract&egrave;re personnel&nbsp;&raquo;, &laquo;&nbsp;responsable du traitement&nbsp;&raquo; et &laquo;&nbsp;sous-traitant&nbsp;&raquo; ont le sens qui leur est donn&eacute; dans le RGPD.</p>
+  <p><strong>&laquo;&nbsp;Services&nbsp;&raquo;</strong> d&eacute;signe l'ensemble des services, payants ou non, propos&eacute;s par Veille Citoyenne dans le cadre de l'utilisation de l'Application.</p>
+  <p><strong>&laquo;&nbsp;Utilisateur&nbsp;&raquo;&nbsp;:</strong> d&eacute;signe toute personne physique majeure, agissant en qualit&eacute; de consommateur au sens du Code de la consommation, qui t&eacute;l&eacute;charge, installe ou utilise l'Application.</p>
+
+  <h2>Article 2 &ndash; Objet</h2>
+  <p>Les Conditions G&eacute;n&eacute;rales ont pour objet de d&eacute;finir les conditions d'acc&egrave;s et d'utilisation de l'Application, ainsi que les droits et obligations de Veille Citoyenne et de l'Utilisateur.</p>
+  <p>Les Conditions G&eacute;n&eacute;rales r&eacute;gissent &eacute;galement les conditions de souscription, de paiement et de r&eacute;siliation de l'offre Premium.</p>
+
+  <h2>Article 3 &ndash; Acceptation et modification des Conditions G&eacute;n&eacute;rales</h2>
+  <p>L'utilisation de l'Application, y compris en version Freemium, est subordonn&eacute;e &agrave; l'acceptation pr&eacute;alable, expresse et sans r&eacute;serve des Conditions G&eacute;n&eacute;rales. Cette acceptation est mat&eacute;rialis&eacute;e par une case &agrave; cocher pr&eacute;sent&eacute;e &agrave; l'Utilisateur lors du premier lancement de l'Application et, le cas &eacute;ch&eacute;ant, lors de la souscription &agrave; l'offre Premium.</p>
+  <p>Les Conditions G&eacute;n&eacute;rales sont accessibles &agrave; tout moment dans l'Application, dans la rubrique &laquo;&nbsp;Conditions g&eacute;n&eacute;rales&nbsp;&raquo;.</p>
+  <p>Veille Citoyenne se r&eacute;serve le droit de modifier les Conditions G&eacute;n&eacute;rales. En cas de modification substantielle, l'Utilisateur en sera inform&eacute; par notification push et/ou par courrier &eacute;lectronique, ainsi que lors de l'ouverture de l'Application, au moins 30 (trente) jours avant leur entr&eacute;e en vigueur, et sera invit&eacute; &agrave; accepter les nouvelles conditions. Sont notamment consid&eacute;r&eacute;es comme substantielles les modifications portant sur l'objet, le p&eacute;rim&egrave;tre des fonctionnalit&eacute;s incluses dans l'Offre Premium, les modalit&eacute;s d'acc&egrave;s aux Services, les obligations respectives des Parties, la dur&eacute;e de l'abonnement, le r&eacute;gime de la r&eacute;tractation et de la r&eacute;siliation, ou les r&egrave;gles relatives &agrave; la responsabilit&eacute;. Ne sont pas consid&eacute;r&eacute;es comme substantielles les modifications purement formelles ou r&eacute;dactionnelles, celles impos&eacute;es par une &eacute;volution l&eacute;gislative ou r&eacute;glementaire ou celles exclusivement favorables &agrave; l'Utilisateur. Ces modifications non substantielles entrent en vigueur &agrave; leur date de publication, sans formalit&eacute; particuli&egrave;re, sans pr&eacute;judice de l'information de l'Utilisateur lorsque celle-ci est requise par la loi.</p>
+  <p>En cas de refus des nouvelles Conditions G&eacute;n&eacute;rales par un Utilisateur titulaire d'un abonnement Premium en cours, celui-ci pourra r&eacute;silier son abonnement sans p&eacute;nalit&eacute; et obtenir le remboursement au prorata de la p&eacute;riode restant &agrave; courir, &agrave; l'exception des modifications tarifaires, lesquelles sont r&eacute;gies par les dispositions de l'article 6.1 des pr&eacute;sentes. Pour les Utilisateurs de l'offre Freemium, le refus entra&icirc;nera l'impossibilit&eacute; de poursuivre l'utilisation de l'Application.</p>
+
+  <h2>Article 4 &ndash; Acc&egrave;s &agrave; l'Application et inscription</h2>
+  <h3>4.1 &ndash; Acc&egrave;s &agrave; l'offre Freemium</h3>
+  <p>L'acc&egrave;s &agrave; l'offre Freemium ne n&eacute;cessite pas la cr&eacute;ation d'un Compte. L'Utilisateur peut t&eacute;l&eacute;charger l'Application et b&eacute;n&eacute;ficier des fonctionnalit&eacute;s de l'offre Freemium, d&eacute;crites au sein de l'article 5 des pr&eacute;sentes.</p>
+  <h3>4.2 &ndash; Inscription et acc&egrave;s &agrave; l'offre Premium</h3>
+  <p>L'acc&egrave;s &agrave; l'offre Premium est subordonn&eacute; &agrave; la cr&eacute;ation d'un Compte personnel. L'Utilisateur doit fournir des informations exactes, compl&egrave;tes et &agrave; jour, et s'engage &agrave; les mettre &agrave; jour en cas de changement.</p>
+  <p>L'Utilisateur est seul responsable de la pr&eacute;servation de la confidentialit&eacute; de ses identifiants de connexion et de la pr&eacute;vention de l'acc&egrave;s non autoris&eacute; &agrave; son Compte. Toute utilisation de l'Application effectu&eacute;e au moyen de ses identifiants est r&eacute;put&eacute;e effectu&eacute;e par l'Utilisateur lui-m&ecirc;me. En cas de suspicion d'utilisation frauduleuse de son Compte ou de toute autre violation de s&eacute;curit&eacute;, l'Utilisateur doit en informer imm&eacute;diatement Veille Citoyenne &agrave; l'adresse <a href="mailto:contact@veillecitoyenne.fr">contact@veillecitoyenne.fr</a>.</p>
+  <h3>4.3 &ndash; Conditions d'utilisation techniques</h3>
+  <p>L'utilisation de l'Application n&eacute;cessite un terminal compatible (smartphone, tablette ou ordinateur), une connexion internet et un syst&egrave;me d'exploitation &agrave; jour (versions minimales indiqu&eacute;es dans la fiche de l'Application sur les stores). Les co&ucirc;ts de connexion internet restent &agrave; la charge exclusive de l'Utilisateur.</p>
+
+  <h2>Article 5 &ndash; Description des Services</h2>
+  <h3>5.1 &ndash; Offre Freemium</h3>
+  <p>L'offre Freemium donne acc&egrave;s aux fonctionnalit&eacute;s suivantes&nbsp;:</p>
+  <ul>
+    <li>Acc&egrave;s aux alertes Rappel Conso Alimentation et &agrave; un domaine d'alertes suppl&eacute;mentaire,</li>
+    <li>Consultation manuelle des alertes,</li>
+    <li>Notifications push limit&eacute;es (alertes vitales uniquement).</li>
+  </ul>
+  <h3>5.2 &ndash; Offre Premium</h3>
+  <p>L'offre Premium donne acc&egrave;s &agrave; l'int&eacute;gralit&eacute; des fonctionnalit&eacute;s de l'offre Freemium, compl&eacute;t&eacute;es notamment par&nbsp;:</p>
+  <ul>
+    <li>Acc&egrave;s &agrave; tous les domaines d'alerte et &agrave; toutes les sources de fa&ccedil;on illimit&eacute;e,</li>
+    <li>Notifications push illimit&eacute;es,</li>
+    <li>Possibilit&eacute; d'activation de la g&eacute;olocalisation de l'Utilisateur,</li>
+    <li>R&eacute;ception d'un bilan quotidien selon les alertes s&eacute;lectionn&eacute;es.</li>
+  </ul>
+  <p>Sauf indication contraire lors de la commande, l'Abonnement Premium est fourni sans retard injustifi&eacute; apr&egrave;s la conclusion du contrat et, au plus tard, dans un d&eacute;lai de vingt-quatre (24) heures &agrave; compter de la validation du paiement par le prestataire de paiement. L'activation est mat&eacute;rialis&eacute;e par l'acc&egrave;s effectif aux fonctionnalit&eacute;s Premium au sein de l'Application.</p>
+  <p>Le d&eacute;tail des fonctionnalit&eacute;s de chaque offre est pr&eacute;cis&eacute; sur la page d'information de l'Application et peut &eacute;voluer. Veille Citoyenne informera l'Utilisateur de toute modification substantielle des fonctionnalit&eacute;s incluses dans l'offre Premium en cours d'abonnement, dans les conditions pr&eacute;vues &agrave; l'article 3 des pr&eacute;sentes.</p>
+  <h3>5.3 &ndash; P&eacute;riode d'essai gratuite</h3>
+  <p>Tout nouvel Utilisateur b&eacute;n&eacute;ficie, lors de la cr&eacute;ation de son Compte, d'une p&eacute;riode d'essai gratuite de quatorze (14) jours calendaires lui donnant acc&egrave;s &agrave; l'ensemble des fonctionnalit&eacute;s de l'Offre Premium. Aucun moyen de paiement n'est requis et aucun pr&eacute;l&egrave;vement n'est effectu&eacute; pendant la p&eacute;riode d'essai. La p&eacute;riode d'essai est strictement personnelle et limit&eacute;e &agrave; un (1) essai par Utilisateur.</p>
+  <p>Veille Citoyenne informe l'Utilisateur de l'approche du terme de la p&eacute;riode d'essai, par notification au sein de l'Application et/ou par courrier &eacute;lectronique, au plus tard trois (3) jours avant son expiration.</p>
+  <p>&Agrave; l'expiration de la p&eacute;riode d'essai, et &agrave; d&eacute;faut de souscription &agrave; l'Offre Premium par l'Utilisateur, son Compte bascule automatiquement vers l'Offre Freemium, sans pr&eacute;l&egrave;vement et sans rupture de service. En cas de souscription &agrave; l'Offre Premium pendant la p&eacute;riode d'essai ou &agrave; l'issue celle-ci, le d&eacute;lai de r&eacute;tractation de quatorze (14) jours pr&eacute;vu &agrave; l'article 11 court &agrave; compter de la date de souscription effective, ind&eacute;pendamment de toute p&eacute;riode d'essai ant&eacute;rieurement consomm&eacute;e.</p>
+  <h3>5.4 &ndash; Personnalisation des alertes</h3>
+  <p>Dans le cadre de l'offre Premium ou durant la p&eacute;riode d'essai gratuite, l'Utilisateur peut personnaliser ses alertes en fonction de sa localisation g&eacute;ographique. &Agrave; cette fin, l'Utilisateur peut renseigner manuellement la ville de son choix au sein de l'Application afin de recevoir des alertes adapt&eacute;es &agrave; cette localisation. L'Utilisateur peut modifier la ville renseign&eacute;e &agrave; tout moment directement depuis les param&egrave;tres de l'Application, sans incidence sur l'acc&egrave;s aux fonctionnalit&eacute;s de base de l'Application. L'Utilisateur peut &eacute;galement activer sa g&eacute;olocalisation au sein de l'Application. L'activation de la g&eacute;olocalisation est strictement facultative et repose sur le consentement express et pr&eacute;alable de l'Utilisateur, recueilli via les param&egrave;tres au sein de l'Application. L'Utilisateur peut d&eacute;sactiver cette fonctionnalit&eacute; &agrave; tout moment depuis les param&egrave;tres de son terminal, sans incidence sur l'acc&egrave;s aux fonctionnalit&eacute;s de base de l'Application.</p>
+  <p>Le traitement des donn&eacute;es de g&eacute;olocalisation est d&eacute;taill&eacute; dans la Politique de confidentialit&eacute;, accessible au sein de l'Application.</p>
+  <h3>5.5 &ndash; Caract&egrave;re informatif</h3>
+  <p>L'Application a un caract&egrave;re strictement informatif et constitue un outil de relais d'alertes, et non une source officielle. Elles ne constituent ni un avis juridique, ni une recommandation m&eacute;dicale, ni un conseil personnalis&eacute;, ni une garantie d'exhaustivit&eacute; ou d'absence de risque. L'Utilisateur demeure seul responsable de l'usage qu'il fait des informations fournies et des d&eacute;cisions qu'il prend sur cette base.</p>
+  <p>En cas d'alerte pr&eacute;sentant un risque imm&eacute;diat pour la sant&eacute;, la s&eacute;curit&eacute; ou les biens (et notamment rappel produit, alerte sanitaire, alerte m&eacute;t&eacute;orologique majeure), l'Utilisateur est invit&eacute; &agrave; consulter, sans d&eacute;lai, les sites officiels des autorit&eacute;s comp&eacute;tentes (notamment rappel.conso.gouv.fr, anses.fr, vigilance.meteofrance.fr, signal.conso.gouv.fr) pour obtenir l'information compl&egrave;te et &agrave; jour. L'Utilisateur est express&eacute;ment inform&eacute; que l'Application ne se substitue pas aux canaux officiels d'information et de gestion de crise mis en place par les autorit&eacute;s comp&eacute;tentes, auxquels il lui appartient de se r&eacute;f&eacute;rer en priorit&eacute;.</p>
+
+  <h2>Article 6 &ndash; Conditions financi&egrave;res de l'offre Premium</h2>
+  <h3>6.1 &ndash; Prix</h3>
+  <p>L'offre Premium est propos&eacute;e sous forme d'abonnement, au choix de l'Utilisateur&nbsp;:</p>
+  <ul>
+    <li>Abonnement mensuel&nbsp;: 3,99 &euro; (euros) par mois&nbsp;;</li>
+    <li>Abonnement annuel&nbsp;: 35,88 &euro; (euros) par an&nbsp;;</li>
+  </ul>
+  <p>Les prix sont indiqu&eacute;s en euros, toutes taxes comprises. SOLAZ GREGORY b&eacute;n&eacute;ficie du r&eacute;gime de franchise en base TVA conform&eacute;ment &agrave; l'article 293 B du Code g&eacute;n&eacute;ral des imp&ocirc;ts.</p>
+  <p>Veille Citoyenne se r&eacute;serve le droit de modifier les tarifs de l'offre Premium. Toute modification de prix sera communiqu&eacute;e &agrave; l'Utilisateur par courrier &eacute;lectronique au moins un (1) mois avant son entr&eacute;e en vigueur. Le prix de la p&eacute;riode d'abonnement en cours au jour de la notification demeure inchang&eacute; jusqu'&agrave; son terme. &Agrave; d&eacute;faut d'acceptation du nouveau tarif, l'Utilisateur pourra r&eacute;silier son abonnement, sans p&eacute;nalit&eacute;, dans les conditions pr&eacute;vues &agrave; l'article 12 des pr&eacute;sentes. La r&eacute;siliation prendra effet au terme de la p&eacute;riode d'abonnement en cours, sans donner lieu &agrave; un quelconque remboursement, le prix initialement souscrit ayant &eacute;t&eacute; int&eacute;gralement honor&eacute; pour cette p&eacute;riode.</p>
+  <h3>6.2 &ndash; Modalit&eacute;s de paiement</h3>
+  <p>Les services de traitement des paiements sur l'Application sont fournis par Stripe et soumis aux conditions g&eacute;n&eacute;rales de ce prestataire. Veille Citoyenne ne stocke pas directement les donn&eacute;es bancaires de l'Utilisateur, qui sont trait&eacute;es exclusivement par le prestataire de paiement. Une fois le paiement effectu&eacute;, l'Utilisateur re&ccedil;oit un courrier &eacute;lectronique confirmant la r&eacute;ception de votre commande.</p>
+  <p>Le pr&eacute;l&egrave;vement est effectu&eacute; d&egrave;s la souscription, puis de mani&egrave;re r&eacute;currente &agrave; chaque date anniversaire (mensuelle ou annuelle selon la formule choisie).</p>
+  <h3>6.3 &ndash; Information pr&eacute;contractuelle</h3>
+  <p>Conform&eacute;ment aux articles L. 111-1 et L. 221-5 du Code de la consommation, Veille Citoyenne fournit &agrave; l'Utilisateur, pr&eacute;alablement &agrave; la souscription, les informations pr&eacute;contractuelles attendues.</p>
+
+  <h2>Article 7 &ndash; Nature des informations diffus&eacute;es</h2>
+  <p>L'Application agr&egrave;ge et relaie des donn&eacute;es issues de bases de donn&eacute;es publiques, accessibles en open data ou via des interfaces programmatiques (API) mises &agrave; disposition par les administrations et organismes publics comp&eacute;tents.</p>
+  <p>Veille Citoyenne ne produit pas, ne contr&ocirc;le pas et ne garantit pas l'exactitude, l'exhaustivit&eacute; ni l'actualit&eacute; des donn&eacute;es &eacute;manant de ces sources publiques. L'Application constitue un outil de consultation et d'agr&eacute;gation, et non un service d'expertise ni de conseil. Les informations diffus&eacute;es ne sauraient se substituer aux avis et recommandations des autorit&eacute;s comp&eacute;tentes.</p>
+  <p>Veille Citoyenne s'engage &agrave; mettre en &oelig;uvre les moyens raisonnables pour relayer les donn&eacute;es publiques dans les meilleurs d&eacute;lais. Toutefois, des d&eacute;lais de mise &agrave; jour, des erreurs ou des interruptions dans la transmission des donn&eacute;es par les organismes sources peuvent survenir ind&eacute;pendamment de la volont&eacute; de Veille Citoyenne.</p>
+  <p>Les donn&eacute;es publiques relay&eacute;es par l'Application sont r&eacute;utilis&eacute;es dans le respect des licences applicables, notamment la Licence Ouverte Etalab v2.0 et, le cas &eacute;ch&eacute;ant, des conditions particuli&egrave;res de r&eacute;utilisation impos&eacute;es par les organismes producteurs. Veille Citoyenne s'engage &agrave; mentionner la source et la date de derni&egrave;re mise &agrave; jour des donn&eacute;es diffus&eacute;es, conform&eacute;ment aux exigences de paternit&eacute; pr&eacute;vues par lesdites licences. La liste des sources et des licences applicables est accessible dans la rubrique &laquo;&nbsp;Sources &amp; Licences&nbsp;&raquo; de l'Application.</p>
+
+  <h2>Article 8 &ndash; Indices d'alerte</h2>
+  <p>Afin de faciliter la lecture et la priorisation des alertes par l'Utilisateur, l'Application attribue &agrave; chaque alerte relay&eacute;e un indice de niveau, repr&eacute;sentatif du degr&eacute; d'urgence ou de gravit&eacute; communiqu&eacute; par la source publique d'origine.</p>
+  <p>Les trois niveaux d'indice utilis&eacute;s dans l'Application sont les suivants&nbsp;:</p>
+  <ul>
+    <li><strong>Critique&nbsp;:</strong> cet indice signale une alerte dont la source officielle indique un risque imm&eacute;diat, av&eacute;r&eacute; ou potentiel pour la sant&eacute;, la s&eacute;curit&eacute; des personnes ou des biens. Il correspond aux alertes pour lesquelles les autorit&eacute;s comp&eacute;tentes recommandent une action urgente de la part des personnes concern&eacute;es (notamment&nbsp;: rappels de produits alimentaires ou de consommation courante pr&eacute;sentant un risque grave, alertes sanitaires, &eacute;pisodes de vigilance m&eacute;t&eacute;orologique de niveau rouge ou &eacute;quivalent). Ces alertes sont envoy&eacute;es imm&eacute;diatement par notification.</li>
+    <li><strong>S&eacute;rieux&nbsp;:</strong> cet indice signale une alerte dont la source officielle indique un risque significatif mais ne n&eacute;cessitant pas n&eacute;cessairement une action imm&eacute;diate, justifiant n&eacute;anmoins une attention particuli&egrave;re et une vigilance accrue de la part de l'Utilisateur (notamment&nbsp;: alertes de vigilance m&eacute;t&eacute;orologique de niveau orange ou &eacute;quivalent, rappels de produits de consommation pr&eacute;sentant un risque mod&eacute;r&eacute;, avis de l'ANSES ou d'autorit&eacute;s analogues relatifs &agrave; des substances pr&eacute;sentant un risque &eacute;ventuel). Ces alertes sont envoy&eacute;es imm&eacute;diatement par notification.</li>
+    <li><strong>Info&nbsp;:</strong> cet indice d&eacute;signe une information de port&eacute;e g&eacute;n&eacute;rale, sans caract&egrave;re d'urgence, qui peut pr&eacute;senter un int&eacute;r&ecirc;t pour l'Utilisateur &agrave; titre de suivi ou de pr&eacute;caution (notamment&nbsp;: rappels &agrave; caract&egrave;re pr&eacute;ventif sans risque imm&eacute;diat identifi&eacute;, publications institutionnelles, mises &agrave; jour r&eacute;glementaires, alertes m&eacute;t&eacute;orologiques de niveau jaune ou &eacute;quivalent). Ces alertes ne font pas l'objet de notifications imm&eacute;diates.</li>
+  </ul>
+  <p>Ces indices sont attribu&eacute;s par Veille Citoyenne sur la base des informations fournies par les organismes sources, selon les crit&egrave;res de classification propres &agrave; chaque source. Ils constituent une aide &agrave; la lecture et n'ont pas de valeur autonome par rapport aux donn&eacute;es officielles relay&eacute;es. Veille Citoyenne ne garantit pas l'exhaustivit&eacute; ni l'infaillibilit&eacute; de cette classification, qui peut &ecirc;tre r&eacute;vis&eacute;e &agrave; tout moment en fonction de l'&eacute;volution des informations disponibles.</p>
+  <p>En toute hypoth&egrave;se, quel que soit l'indice attribu&eacute;, l'Utilisateur est invit&eacute; &agrave; se reporter aux sources officielles comp&eacute;tentes pour obtenir l'information compl&egrave;te et &agrave; jour, conform&eacute;ment &agrave; l'article 5.5 des pr&eacute;sentes.</p>
+
+  <h2>Article 9 &ndash; Ind&eacute;pendance</h2>
+  <p>Veille Citoyenne exerce son activit&eacute; en toute ind&eacute;pendance &agrave; l'&eacute;gard des administrations, organismes publics et op&eacute;rateurs priv&eacute;s dont les donn&eacute;es sont relay&eacute;es par l'Application. Aucun partenariat commercial, convention de r&eacute;f&eacute;rencement payant ou lien capitalistique ne lie Veille Citoyenne &agrave; ces entit&eacute;s. A ce titre, l'Application ne comporte aucun contenu publicitaire ni aucun placement commercial susceptible d'influencer la s&eacute;lection, la hi&eacute;rarchisation ou la pr&eacute;sentation des alertes. Aucune administration, collectivit&eacute;, entreprise ou organisme tiers ne dispose de la facult&eacute; de r&eacute;mun&eacute;rer Veille Citoyenne en vue d'obtenir une mise en avant ou un traitement privil&eacute;gi&eacute; de ses donn&eacute;es au sein de l'Application.</p>
+
+  <h2>Article 10 &ndash; Notifications push</h2>
+  <p>L'Application utilise des notifications push pour informer l'Utilisateur de nouvelles alertes. L'envoi de notifications push repose sur le consentement pr&eacute;alable de l'Utilisateur, recueilli lors de la premi&egrave;re utilisation de l'Application ou via les param&egrave;tres de celle-ci.</p>
+  <p>L'Utilisateur peut &agrave; tout moment g&eacute;rer ses pr&eacute;f&eacute;rences de notification depuis les param&egrave;tres de l'Application et/ou de son terminal, y compris d&eacute;sactiver compl&egrave;tement les notifications.</p>
+  <p>Veille Citoyenne ne garantit pas la r&eacute;ception en temps r&eacute;el des notifications, celle-ci d&eacute;pendant de facteurs techniques ext&eacute;rieurs (connexion internet, param&egrave;tres du terminal, serveurs de notifications des syst&egrave;mes d'exploitation concern&eacute;s et notamment iOS et Android).</p>
+
+  <h2>Article 11 &ndash; Droit de r&eacute;tractation</h2>
+  <h3>11.1 &ndash; Principe</h3>
+  <p>Conform&eacute;ment aux articles L. 221-18 et suivants du Code de la consommation, l'Utilisateur dispose d'un d&eacute;lai de quatorze (14) jours &agrave; compter de la date de souscription de l'Abonnement Premium pour exercer son droit de r&eacute;tractation, sans avoir &agrave; motiver sa d&eacute;cision ni &agrave; supporter d'autres co&ucirc;ts que ceux pr&eacute;vus par la loi.</p>
+  <h3>11.2 &ndash; Modalit&eacute;s d'exercice du droit de r&eacute;tractation</h3>
+  <p>Pour exercer son droit de r&eacute;tractation, l'Utilisateur peut, avant l'expiration du d&eacute;lai de quatorze (14) jours, notifier sa d&eacute;cision &agrave; Veille Citoyenne par tout moyen &eacute;crit, et notamment&nbsp;:</p>
+  <ul>
+    <li>Par courrier &eacute;lectronique adress&eacute; &agrave; <a href="mailto:contact@veillecitoyenne.fr">contact@veillecitoyenne.fr</a>&nbsp;;</li>
+    <li>Par courrier postal &agrave; l'adresse du si&egrave;ge social de Veille Citoyenne&nbsp;;</li>
+    <li>En utilisant le formulaire de r&eacute;tractation pr&eacute;vu dans l'onglet &laquo;&nbsp;R&eacute;tractation&nbsp;&raquo; au sein de l'Application.</li>
+  </ul>
+  <p>L'Utilisateur peut &eacute;galement utiliser le mod&egrave;le suivant&nbsp;:</p>
+  <div class="box ital">&laquo;&nbsp;&Agrave; l'attention de Veille Citoyenne &ndash; contact@veillecitoyenne.fr &ndash; 20 rue Louis Blanc, 31400 Toulouse&nbsp;:<br><br>Conform&eacute;ment aux articles L. 221-18 et suivants du Code de la consommation, je vous notifie par la pr&eacute;sente ma d&eacute;cision de me r&eacute;tracter du contrat d'abonnement Premium &agrave; l'application Veille Citoyenne, command&eacute; le [date].<br><br>Nom, pr&eacute;nom&nbsp;:<br>Adresse&nbsp;:<br>Adresse email utilis&eacute;e pour le compte&nbsp;:<br>Date&nbsp;:<br>Signature&nbsp;&raquo;</div>
+  <p>Veille Citoyenne rembourse &agrave; l'Utilisateur les sommes dues dans un d&eacute;lai maximal de quatorze (14) jours &agrave; compter de la date &agrave; laquelle elle est inform&eacute;e de la d&eacute;cision de r&eacute;tractation, en utilisant le m&ecirc;me moyen de paiement que celui utilis&eacute; par l'Utilisateur pour la transaction initiale, sauf accord expr&egrave;s de ce dernier pour un autre moyen.</p>
+  <p>En cas de r&eacute;tractation apr&egrave;s le d&eacute;but d'ex&eacute;cution du service num&eacute;rique, Veille Citoyenne pourra retenir un montant correspondant au service fourni jusqu'&agrave; la communication de la d&eacute;cision de r&eacute;tractation, conform&eacute;ment &agrave; l'article L. 22125 du Code de la consommation.</p>
+
+  <h2>Article 12 &ndash; Dur&eacute;e, reconduction et r&eacute;siliation</h2>
+  <h3>12.1 &ndash; Dur&eacute;e et reconduction</h3>
+  <p>L'abonnement Premium est souscrit pour la dur&eacute;e s&eacute;lectionn&eacute;e par l'Utilisateur lors de sa souscription, soit un (1) mois ou un (1) an.</p>
+  <p>&Agrave; l'&eacute;ch&eacute;ance de chaque p&eacute;riode mensuelle, l'abonnement Premium est automatiquement reconduit pour une dur&eacute;e d'un (1) mois, sauf r&eacute;siliation par l'Utilisateur. L'Utilisateur peut r&eacute;silier son Abonnement Mensuel &agrave; tout moment, sans pr&eacute;avis ni p&eacute;nalit&eacute;, au sein de l'Application depuis son espace personnel via la fonctionnalit&eacute; de r&eacute;siliation en ligne pr&eacute;vue &agrave; cet effet. La r&eacute;siliation prend effet au terme de la p&eacute;riode mensuelle en cours. L'Utilisateur reconna&icirc;t &ecirc;tre inform&eacute;, d&egrave;s la souscription puis &agrave; l'occasion de chaque nouvelle reconduction, de la reconduction automatique de son abonnement et de sa facult&eacute; permanente d'y mettre fin.</p>
+  <p>&Agrave; l'&eacute;ch&eacute;ance de la p&eacute;riode annuelle, l'Abonnement Premium est automatiquement reconduit pour une dur&eacute;e d'un (1) an, sauf r&eacute;siliation par l'Utilisateur dans les conditions pr&eacute;vues ci-dessous. Conform&eacute;ment &agrave; l'article L. 215-1 du Code de la consommation, Veille Citoyenne informe l'Utilisateur par courrier &eacute;lectronique de la possibilit&eacute; de ne pas reconduire son abonnement, au plus t&ocirc;t trois (3) mois et au plus tard un (1) mois avant le terme de la p&eacute;riode d'abonnement en cours.</p>
+  <p>&Agrave; d&eacute;faut de respect par Veille Citoyenne du d&eacute;lai d'information mentionn&eacute; ci-dessus, l'Utilisateur peut, conform&eacute;ment aux dispositions l&eacute;gales applicables, mettre fin gratuitement &agrave; son abonnement &agrave; tout moment &agrave; compter de la date de reconduction. Les sommes vers&eacute;es post&eacute;rieurement &agrave; la derni&egrave;re date de reconduction sont rembours&eacute;es dans un d&eacute;lai de trente (30) jours &agrave; compter de la date de r&eacute;siliation, d&eacute;duction faite des sommes correspondant &agrave; l'ex&eacute;cution de l'abonnement jusqu'&agrave; cette date.</p>
+  <h3>12.2 &ndash; R&eacute;siliation par l'Utilisateur</h3>
+  <p>L'Utilisateur peut r&eacute;silier son abonnement Premium &agrave; tout moment, sans justification et sans p&eacute;nalit&eacute;. La r&eacute;siliation prend effet &agrave; l'expiration de la p&eacute;riode d'abonnement en cours. L'Utilisateur conserve l'acc&egrave;s aux fonctionnalit&eacute;s Premium jusqu'&agrave; cette date. Aucun remboursement au prorata ne sera effectu&eacute; pour la p&eacute;riode d'abonnement restant &agrave; courir, sauf exercice du droit de r&eacute;tractation dans les conditions pr&eacute;vues &agrave; l'article 11 des pr&eacute;sentes.</p>
+  <p>Conform&eacute;ment &agrave; l'article L. 215-1-1 du Code de la consommation, Veille Citoyenne met &agrave; disposition de l'Utilisateur une fonctionnalit&eacute; gratuite, facilement accessible et directe au sein de l'Application, permettant de notifier et d'accomplir par voie &eacute;lectronique les d&eacute;marches n&eacute;cessaires &agrave; la r&eacute;siliation de l'abonnement. Veille Citoyenne confirme la r&eacute;ception de la notification de r&eacute;siliation par courrier &eacute;lectronique et dans un d&eacute;lai raisonnable et informe l'Utilisateur de la date &agrave; laquelle l'abonnement prend fin et des effets de la r&eacute;siliation.</p>
+  <h3>12.3 &ndash; R&eacute;siliation par Veille Citoyenne</h3>
+  <p>Veille Citoyenne se r&eacute;serve la facult&eacute; de suspendre ou de r&eacute;silier le Compte d'un Utilisateur en cas de manquement grave ou r&eacute;p&eacute;t&eacute; aux Conditions G&eacute;n&eacute;rales, et notamment en cas d'utilisation frauduleuse de l'Application ou du Compte, d'atteinte &agrave; la s&eacute;curit&eacute; ou &agrave; l'int&eacute;grit&eacute; de l'Application, de violation des droits de propri&eacute;t&eacute; intellectuelle de Veille Citoyenne ou de tiers, de communication d'informations erron&eacute;es ou trompeuses lors de la souscription ou en cours d'ex&eacute;cution des Conditions G&eacute;n&eacute;rales.</p>
+  <p>Pr&eacute;alablement &agrave; toute r&eacute;siliation, Veille Citoyenne notifie &agrave; l'Utilisateur, par courrier &eacute;lectronique, le manquement constat&eacute; et lui accorde un d&eacute;lai raisonnable, qui ne saurait &ecirc;tre inf&eacute;rieur &agrave; quinze (15) jours, pour pr&eacute;senter ses observations ou r&eacute;gulariser la situation. Cette proc&eacute;dure pr&eacute;alable n'est pas applicable en cas d'urgence tenant notamment &agrave; la s&eacute;curit&eacute; de l'Application, &agrave; la protection des autres utilisateurs ou &agrave; la pr&eacute;servation des droits de tiers.</p>
+  <p>En cas de r&eacute;siliation imputable &agrave; un manquement de l'Utilisateur, aucun remboursement, total ou partiel, ne sera d&ucirc; par Veille Citoyenne, sans pr&eacute;judice des dommages et int&eacute;r&ecirc;ts que Veille Citoyenne pourrait &ecirc;tre amen&eacute;e &agrave; r&eacute;clamer.</p>
+  <h3>12.4 &ndash; Cons&eacute;quences de la r&eacute;siliation</h3>
+  <p>&Agrave; l'issue de la r&eacute;siliation, l'Utilisateur perd l'acc&egrave;s aux fonctionnalit&eacute;s Premium et conserve l'acc&egrave;s &agrave; l'offre Freemium. Les donn&eacute;es personnelles associ&eacute;es au Compte seront trait&eacute;es conform&eacute;ment &agrave; la politique de confidentialit&eacute; et &agrave; la r&eacute;glementation applicable.</p>
+  <p>La r&eacute;siliation n'affecte pas les stipulations qui, par leur nature, ont vocation &agrave; survivre aux pr&eacute;sentes Conditions G&eacute;n&eacute;rales.</p>
+
+  <h2>Article 13 &ndash; Garantie l&eacute;gale de conformit&eacute; des services num&eacute;riques</h2>
+  <p>Conform&eacute;ment aux articles L. 224-25-1 et suivants du Code de la consommation, Veille Citoyenne est tenue de fournir un service num&eacute;rique conforme aux pr&eacute;sentes. Veille Citoyenne r&eacute;pond des d&eacute;fauts de conformit&eacute; existant lors de la fourniture du service ainsi que de ceux qui apparaissent au cours de la p&eacute;riode de fourniture pour les services num&eacute;riques fournis de mani&egrave;re continue, conform&eacute;ment &agrave; l'article L. 224-25-12 du m&ecirc;me code.</p>
+  <p>En cas de d&eacute;faut de conformit&eacute;, l'Utilisateur a le droit d'exiger la mise en conformit&eacute; du service, sans frais et sans inconv&eacute;nient majeur, dans un d&eacute;lai raisonnable. Si la mise en conformit&eacute; est impossible ou entra&icirc;ne des co&ucirc;ts disproportionn&eacute;s, l'Utilisateur peut obtenir une r&eacute;duction de prix ou la r&eacute;solution du contrat dans les conditions pr&eacute;vues aux articles L. 224-25-15 et suivants du Code de la consommation.</p>
+  <p>En cas de r&eacute;solution, le remboursement intervient au plus tard dans un d&eacute;lai de quatorze (14) jours &agrave; compter de la date &agrave; laquelle Veille Citoyenne est inform&eacute;e de la d&eacute;cision de l'Utilisateur.</p>
+
+  <h2>Article 14 &ndash; Responsabilit&eacute;</h2>
+  <h3>14.1 &ndash; Nature des obligations de Veille Citoyenne</h3>
+  <p>Veille Citoyenne est tenue, dans le cadre de l'ex&eacute;cution des pr&eacute;sentes, d'une obligation de moyens. Veille Citoyenne s'engage &agrave; mettre en &oelig;uvre toutes les diligences raisonnables pour assurer le bon fonctionnement de l'Application et la fiabilit&eacute; de la restitution des donn&eacute;es qu'elle agr&egrave;ge.</p>
+  <h3>14.2 &ndash; Donn&eacute;es publiques agr&eacute;g&eacute;es</h3>
+  <p>L'Application a pour objet d'agr&eacute;ger et de relayer des alertes et informations issues de sources publiques. Veille Citoyenne n'est ni l'auteur ni l'&eacute;diteur de ces donn&eacute;es, dont la production, l'exactitude, l'exhaustivit&eacute; et la mise &agrave; jour rel&egrave;vent de la responsabilit&eacute; exclusive des organismes publics sources.</p>
+  <p>En cons&eacute;quence, la responsabilit&eacute; de Veille Citoyenne ne peut &ecirc;tre engag&eacute;e du fait de l'inexactitude, de l'incompl&eacute;tude, de l'obsolescence ou du retard de mise &agrave; jour des donn&eacute;es &eacute;manant de ces sources, d&egrave;s lors que la restitution op&eacute;r&eacute;e par l'Application est conforme aux donn&eacute;es publi&eacute;es par lesdites sources.</p>
+  <h3>14.3 &ndash; Causes d'exon&eacute;ration</h3>
+  <p>Sous r&eacute;serve des dispositions imp&eacute;ratives applicables et des droits de l'Utilisateur au titre de la garantie l&eacute;gale de conformit&eacute; et du droit de la consommation, la responsabilit&eacute; de Veille Citoyenne ne saurait &ecirc;tre engag&eacute;e en cas de&nbsp;:</p>
+  <ul>
+    <li>Dommage r&eacute;sultant d'une utilisation par l'Utilisateur de l'Application non conforme aux pr&eacute;sentes Conditions G&eacute;n&eacute;rales ou aux instructions communiqu&eacute;es par Veille Citoyenne&nbsp;;</li>
+    <li>Dommage r&eacute;sultant exclusivement d'un dysfonctionnement, d'une incompatibilit&eacute; ou d'une mauvaise configuration du terminal de l'Utilisateur, de son syst&egrave;me d'exploitation ou de sa connexion internet&nbsp;;</li>
+    <li>Dommage r&eacute;sultant d'information inexacte renseign&eacute;e par l'Utilisateur sur son Compte&nbsp;;</li>
+    <li>Indisponibilit&eacute;s temporaires du Service li&eacute;es &agrave; des op&eacute;rations de maintenance, &agrave; des &eacute;volutions techniques ou &agrave; des interruptions des r&eacute;seaux de communication &eacute;lectroniques&nbsp;;</li>
+    <li>Cas de force majeure au sens de l'article 1218 du Code civil et de la jurisprudence des juridictions fran&ccedil;aises.</li>
+  </ul>
+  <p>Les pr&eacute;sentes stipulations ne sauraient avoir pour effet de priver l'Utilisateur de ses droits l&eacute;gaux en sa qualit&eacute; de consommateur, notamment au titre de la garantie l&eacute;gale de conformit&eacute; pr&eacute;vue aux articles L. 224-25-1 et suivants du Code de la consommation et du droit commun de la responsabilit&eacute; civile.</p>
+
+  <h2>Article 15 &ndash; Propri&eacute;t&eacute; intellectuelle</h2>
+  <p>L'Application, son architecture, son code source, son design, ses interfaces graphiques, ses textes, images, logos et tout autre &eacute;l&eacute;ment cr&eacute;&eacute; par Veille Citoyenne sont prot&eacute;g&eacute;s par le droit de la propri&eacute;t&eacute; intellectuelle et demeurent la propri&eacute;t&eacute; exclusive de Veille Citoyenne.</p>
+  <p>L'Utilisateur b&eacute;n&eacute;ficie d'un droit d'usage personnel, non exclusif, non cessible et non transf&eacute;rable de l'Application, pour la dur&eacute;e de son utilisation. Toute reproduction, repr&eacute;sentation, modification, adaptation ou exploitation non autoris&eacute;e de tout ou partie de l'Application est interdite et constitue une contrefa&ccedil;on au sens des articles L. 335-2 et suivants du Code de la propri&eacute;t&eacute; intellectuelle.</p>
+  <p>Les donn&eacute;es publiques relay&eacute;es par l'Application demeurent soumises aux conditions de r&eacute;utilisation d&eacute;finies par les organismes publics qui les produisent, conform&eacute;ment au Code des relations entre le public et l'administration et, le cas &eacute;ch&eacute;ant, aux licences ouvertes applicables (notamment la Licence Ouverte Etalab v2.0).</p>
+  <p>La marque Veille Citoyenne est une marque d&eacute;pos&eacute;e. Toute utilisation, reproduction ou imitation de la marque sans autorisation pr&eacute;alable et &eacute;crite de Veille Citoyenne est strictement interdite et constitue une contrefa&ccedil;on au sens du Livre VII du Code de la propri&eacute;t&eacute; intellectuelle.</p>
+
+  <h2>Article 16 &ndash; Donn&eacute;es personnelles</h2>
+  <p>Veille Citoyenne accorde une attention particuli&egrave;re &agrave; la protection des donn&eacute;es &agrave; caract&egrave;re personnel et &agrave; la sauvegarde des droits des personnes concern&eacute;es.</p>
+  <p>Veille Citoyenne agit en qualit&eacute; de responsable de traitement au sens du R&egrave;glement (UE) 2016/679 du 27 avril 2016 (RGPD) pour les traitements de donn&eacute;es personnelles mis en &oelig;uvre dans le cadre de l'Application.</p>
+  <p>Les modalit&eacute;s de collecte, de traitement, de conservation et d'exercice des droits de l'Utilisateur sur ses donn&eacute;es personnelles sont d&eacute;taill&eacute;es dans la Politique de confidentialit&eacute; accessible depuis l'Application. Tout traitement de donn&eacute;es personnelles dans le cadre des pr&eacute;sentes est soumis aux dispositions de notre Politique de confidentialit&eacute;, qui fait partie int&eacute;grante des Conditions G&eacute;n&eacute;rales.</p>
+  <p>L'Utilisateur dispose des droits d'acc&egrave;s, de rectification, d'effacement, d'opposition, de limitation, de portabilit&eacute; et peut d&eacute;finir des directives post-mortem, en s'adressant &agrave;&nbsp;: <a href="mailto:rgpd@veillecitoyenne.fr">rgpd@veillecitoyenne.fr</a>.</p>
+  <p>Toute r&eacute;clamation peut &ecirc;tre adress&eacute;e &agrave; la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>).</p>
+
+  <h2>Article 17 &ndash; Obligations de l'Utilisateur</h2>
+  <p>L'Utilisateur s'engage &agrave; utiliser l'Application conform&eacute;ment aux Conditions G&eacute;n&eacute;rales et aux dispositions l&eacute;gales et r&eacute;glementaires en vigueur. En particulier, l'Utilisateur s'interdit&nbsp;:</p>
+  <ul>
+    <li>De tenter d'acc&eacute;der de mani&egrave;re non autoris&eacute;e aux syst&egrave;mes informatiques de Veille Citoyenne ou de perturber le fonctionnement de l'Application&nbsp;;</li>
+    <li>D'utiliser des robots, scripts ou tout proc&eacute;d&eacute; automatis&eacute; pour extraire massivement des donn&eacute;es de l'Application (scraping)&nbsp;;</li>
+    <li>De reproduire, distribuer ou exploiter commercialement tout ou partie du contenu de l'Application sans autorisation pr&eacute;alable de Veille Citoyenne&nbsp;;</li>
+    <li>D'usurper l'identit&eacute; d'un tiers ou de cr&eacute;er des comptes multiples de mani&egrave;re frauduleuse.</li>
+  </ul>
+  <p>Tout manquement aux pr&eacute;sentes obligations expose l'Utilisateur &agrave; la suspension ou &agrave; la r&eacute;siliation de son Compte dans les conditions pr&eacute;vues &agrave; l'article 12 des pr&eacute;sentes, sans pr&eacute;judice de toute action judiciaire que Veille Citoyenne pourrait engager.</p>
+
+  <h2>Article 18 &ndash; Disponibilit&eacute; et maintenance</h2>
+  <p>Veille Citoyenne s'efforce d'assurer la disponibilit&eacute; de l'Application vingt-quatre heures sur vingt-quatre (24h/24), sept jours sur sept (7j/7), sauf cas de force majeure, comportement impr&eacute;visible et insurmontable d'un tiers, et sous r&eacute;serve des &eacute;ventuelle pannes et/ou op&eacute;rations de maintenance n&eacute;cessaires au bon fonctionnement de l'Application.</p>
+  <p>Dans la mesure du possible, les op&eacute;rations de maintenance programm&eacute;es seront annonc&eacute;es &agrave; l'avance, par notification ou par courrier &eacute;lectronique. Veille Citoyenne ne saurait &ecirc;tre tenu responsable des cons&eacute;quences de l'indisponibilit&eacute; temporaire de l'Application, sans pr&eacute;judice des droits de l'Utilisateur au titre de la garantie l&eacute;gale de conformit&eacute;.</p>
+
+  <h2>Article 19 &ndash; Mediation</h2>
+  <p>En cas de r&eacute;clamation, l'Utilisateur est invit&eacute; &agrave; contacter pr&eacute;alablement Veille Citoyenne par courrier &eacute;lectronique &agrave; l'adresse <a href="mailto:contact@veillecitoyenne.fr">contact@veillecitoyenne.fr</a> ou par courrier postal au si&egrave;ge social, afin de rechercher une solution amiable.</p>
+  <p>Conform&eacute;ment &agrave; L. 612-1 et suivants du Code de la consommation, &agrave; d&eacute;faut de r&eacute;solution amiable, l'Utilisateur peut recourir gratuitement au service de m&eacute;diation de la consommation CM2C (Centre de la M&eacute;diation de la Consommation de Conciliateurs de Justice), r&eacute;f&eacute;renc&eacute; par la Commission d'&Eacute;valuation et de Contr&ocirc;le de la M&eacute;diation de la Consommation (CECMC)&nbsp;: CM2C, 49 rue de Ponthieu, 75008 Paris - <a href="https://www.cm2c.net" target="_blank" rel="noopener">www.cm2c.net</a>, adresse &eacute;lectronique&nbsp;: <a href="mailto:cm2c@cm2c.net">cm2c@cm2c.net</a></p>
+  <p>La saisine du m&eacute;diateur doit intervenir dans un d&eacute;lai d'un (1) an &agrave; compter de la r&eacute;clamation &eacute;crite pr&eacute;alable adress&eacute;e &agrave; Veille Citoyenne et n'est recevable que si le litige n'a pas d&eacute;j&agrave; &eacute;t&eacute; examin&eacute; ou est en cours d'examen par un autre m&eacute;diateur ou par un tribunal.</p>
+  <p>La saisine du m&eacute;diateur ne pr&eacute;juge pas du droit de l'Utilisateur de saisir, &agrave; tout moment, la juridiction comp&eacute;tente.</p>
+
+  <h2>Article 20 &ndash; Loi applicable et juridiction</h2>
+  <p>Les Conditions G&eacute;n&eacute;rales et les op&eacute;rations qui en d&eacute;coulent sont r&eacute;gies par le droit fran&ccedil;ais. Les Conditions G&eacute;n&eacute;rales sont r&eacute;dig&eacute;es en langue fran&ccedil;aise. Dans le cas o&ugrave; elles seraient traduites en une ou plusieurs langues, seul le texte fran&ccedil;ais ferait foi en cas de litige.</p>
+  <p>En cas de litige, et &agrave; d&eacute;faut de r&eacute;solution amiable ou de m&eacute;diation, le litige sera port&eacute; devant les juridictions comp&eacute;tentes conform&eacute;ment aux r&egrave;gles de droit commun. L'Utilisateur, agissant en qualit&eacute; de consommateur, b&eacute;n&eacute;ficie des r&egrave;gles protectrices de comp&eacute;tence territoriale pr&eacute;vues par le Code de la consommation et le Code de proc&eacute;dure civile.</p>
+
+  <h2>Article 21 &ndash; Dispositions diverses</h2>
+  <h3>21.1 &ndash; Accord entier</h3>
+  <p>Les Conditions G&eacute;n&eacute;rales, compl&eacute;t&eacute;es par la Politique de confidentialit&eacute;, constituent l'accord entier entre les Parties et remplace et se substitue &agrave; tout accord, &eacute;crit ou oral, pr&eacute;alable entre les Parties relativement &agrave; son objet.</p>
+  <h3>21.2 &ndash; Nullit&eacute; partielle</h3>
+  <p>Si l'une quelconque des stipulations des pr&eacute;sentes Conditions G&eacute;n&eacute;rales est d&eacute;clar&eacute;e nulle ou inapplicable par une juridiction comp&eacute;tente, les autres stipulations demeurent en vigueur et conservent leur plein effet.</p>
+  <h3>21.3 &ndash; Tol&eacute;rance</h3>
+  <p>Le fait que l'une ou l'autre des Parties n'ait pas exig&eacute;, temporairement ou d&eacute;finitivement, l'application d'une stipulation des Conditions G&eacute;n&eacute;rales ne pourra &ecirc;tre consid&eacute;r&eacute;e comme une renonciation aux droits d&eacute;tenus par cette Partie.</p>
+</main>
+
+<footer>
+  <div class="foot-wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">Veille Citoyenne</div>
+        <p class="foot-tag">L'application qui rend les alertes officielles visibles et accessibles &agrave; tous. Sans donn&eacute;e, sans publicit&eacute;.</p>
+      </div>
+      <div class="foot-col"><h4>Informations</h4><a href="qui-sommes-nous.html">Qui sommes-nous</a><a href="mission.html">Notre mission</a><a href="comment-ca-marche.html">Comment &ccedil;a marche</a><a href="index.html#contact">Nous contacter</a></div>
+      <div class="foot-col"><h4>Application</h4><a href="index.html#telecharger">T&eacute;l&eacute;charger</a><a href="index.html#fonctionnalites">Fonctionnalit&eacute;s</a><a href="index.html#tarifs">Tarifs</a><a href="index.html#faq">FAQ</a></div>
+      <div class="foot-col"><h4>L&eacute;gal</h4><a href="mentions-legales.html">Mentions l&eacute;gales</a><a href="cgvu.html">CGVU</a><a href="confidentialite.html">Confidentialit&eacute;</a><a href="sources-licences.html">Sources &amp; licences</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>Solaz Gr&eacute;gory &mdash; Entrepreneur Individuel &middot; SIRET 804 334 365 00017 &middot; Toulouse, France</span>
+      <span>Marque INPI n&deg; 26-085-9876674</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
