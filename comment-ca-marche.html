@@ -20,7 +20,7 @@
   nav{position:sticky;top:0;z-index:60;background:rgba(245,246,250,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
   .nav-inner{max-width:1080px;margin:0 auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between}
   .brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:1.15rem;font-family:var(--display);letter-spacing:-.02em}
-  .mark{width:32px;height:32px;border:1.5px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;position:relative;font-weight:700}
+  .mark{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;position:relative;font-weight:700}
   .mark::after{content:"";position:absolute;width:7px;height:7px;background:var(--primary);border-radius:50%;top:-1px;right:-1px;animation:blink 2.4s ease-in-out infinite}
   @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
   .nav-links{display:flex;align-items:center;gap:28px;font-size:.92rem}
@@ -102,12 +102,14 @@
     .signature{flex-direction:column;text-align:center}
   }
 </style>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
 </head>
 <body>
 
 <nav>
   <div class="nav-inner">
-    <a href="index.html" class="brand"><span class="mark">V</span> Veille Citoyenne</a>
+    <a href="index.html" class="brand"><img src="logo.png" alt="Veille Citoyenne" class="mark" style="object-fit:cover"> Veille Citoyenne</a>
     <div class="nav-links">
       <a href="index.html#sources">Sources</a>
       <a href="index.html#fonctionnement">Fonctionnement</a>
