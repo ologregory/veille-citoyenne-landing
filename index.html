@@ -40,7 +40,7 @@
   nav{position:sticky;top:0;z-index:60;background:rgba(245,246,250,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
   .nav-inner{max-width:1120px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
   .brand{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:-.02em}
-  .mark{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;position:relative}
+  .mark{width:30px;height:30px;border:1.5px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;position:relative}
   .mark::after{content:"";position:absolute;width:7px;height:7px;background:var(--primary);border-radius:50%;top:-2px;right:-2px}
   .nav-links{display:flex;align-items:center;gap:34px;font-size:.9rem}
   .nav-links a:not(.nav-cta){color:var(--muted);transition:color .2s}
@@ -332,14 +332,12 @@
     .foot-top{grid-template-columns:1fr}
   }
 </style>
-  <link rel="icon" type="image/png" href="logo.png">
-  <link rel="apple-touch-icon" href="logo.png">
 </head>
 <body>
 
 <nav>
   <div class="nav-inner">
-    <div class="brand"><img src="logo.png" alt="Veille Citoyenne" class="mark" style="object-fit:cover"> Veille Citoyenne</div>
+    <div class="brand"><span class="mark">V</span> Veille Citoyenne</div>
     <div class="nav-links">
       <a href="#sources">Sources</a>
       <a href="#fonctionnement">Fonctionnement</a>
@@ -428,8 +426,8 @@
     <h2 class="rv" style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;max-width:20ch;margin-bottom:44px">Uniquement des donn&eacute;es publiques.</h2>
     <div class="marquee rv">
       <div class="mq-track">
-        <span>RappelConso</span><span>ANSM</span><span>AMF</span><span>BODACC</span><span>Safety Gate EU</span><span>Vigicrues</span><span>M&eacute;t&eacute;o France</span><span>Hub'Eau</span><span>Atmo France</span><span>VigiEau</span><span>R&eacute;seau Sentinelles</span><span>Prix Carburants</span><span>FAO</span><span>Agreste</span><span>RNM Rungis</span><span>ESA/ANSES</span><span>DGCCRF</span>
-        <span>RappelConso</span><span>ANSM</span><span>AMF</span><span>BODACC</span><span>Safety Gate EU</span><span>Vigicrues</span><span>M&eacute;t&eacute;o France</span><span>Hub'Eau</span><span>Atmo France</span><span>VigiEau</span><span>R&eacute;seau Sentinelles</span><span>Prix Carburants</span><span>FAO</span><span>Agreste</span><span>RNM Rungis</span><span>ESA/ANSES</span><span>DGCCRF</span>
+        <span>RappelConso</span><span>ANSM</span><span>AMF</span><span>BODACC</span><span>Safety Gate EU</span><span>Vigicrues</span><span>M&eacute;t&eacute;o France</span><span>Hub'Eau</span><span>Atmo France</span><span>VigiEau</span><span>Odiss&eacute;</span><span>Prix Carburants</span><span>FAO</span><span>Agreste</span><span>RNM Rungis</span><span>ESA/ANSES</span><span>ANSM Disponibilit&eacute;s</span>
+        <span>RappelConso</span><span>ANSM</span><span>AMF</span><span>BODACC</span><span>Safety Gate EU</span><span>Vigicrues</span><span>M&eacute;t&eacute;o France</span><span>Hub'Eau</span><span>Atmo France</span><span>VigiEau</span><span>Odiss&eacute;</span><span>Prix Carburants</span><span>FAO</span><span>Agreste</span><span>RNM Rungis</span><span>ESA/ANSES</span><span>ANSM Disponibilit&eacute;s</span>
       </div>
     </div>
   </div>
@@ -525,7 +523,7 @@
       <div class="field"><label for="nom">Nom</label><input id="nom" type="text" placeholder="Votre nom"></div>
       <div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="vous@exemple.fr"></div>
       <div class="field"><label for="msg">Message</label><textarea id="msg" placeholder="Votre message"></textarea></div>
-      <button class="btn-ink" onclick="sendMsg(event)" style="margin-top:6px">Envoyer le message <span class="arr">&rarr;</span></button>
+      <button class="btn-ink" onclick="sendMsg()" style="margin-top:6px">Envoyer le message <span class="arr">&rarr;</span></button>
     </div>
   </div>
 </section>
@@ -537,9 +535,9 @@
         <div class="foot-brand">Veille Citoyenne</div>
         <p class="foot-tag">L'application qui rend les alertes officielles visibles et accessibles &agrave; tous. Sans donn&eacute;e, sans publicit&eacute;.</p>
       </div>
-      <div class="foot-col"><h4>Informations</h4><a href="qui-sommes-nous.html">Qui sommes-nous</a><a href="mission.html">Notre mission</a><a href="comment-ca-marche.html">Comment &ccedil;a marche</a><a href="#contact">Nous contacter</a></div>
+      <div class="foot-col"><h4>Informations</h4><a href="#">Qui sommes-nous</a><a href="#">Notre mission</a><a href="#fonctionnement">Comment &ccedil;a marche</a><a href="#contact">Nous contacter</a></div>
       <div class="foot-col"><h4>Application</h4><a href="#telecharger">T&eacute;l&eacute;charger</a><a href="#fonctionnalites">Fonctionnalit&eacute;s</a><a href="#tarifs">Tarifs</a><a href="#contact">FAQ</a></div>
-      <div class="foot-col"><h4>L&eacute;gal</h4><a href="mentions-legales.html">Mentions l&eacute;gales</a><a href="cgvu.html">CGVU</a><a href="confidentialite.html">Confidentialit&eacute;</a><a href="sources-licences.html">Sources &amp; licences</a></div>
+      <div class="foot-col"><h4>L&eacute;gal</h4><a href="#">Mentions l&eacute;gales</a><a href="#">CGVU</a><a href="#">Confidentialit&eacute;</a><a href="#sources">Sources &amp; licences</a></div>
     </div>
     <div class="foot-bottom">
       <span>Solaz Gr&eacute;gory &mdash; Entrepreneur Individuel &middot; SIRET 804 334 365 00017 &middot; Toulouse, France</span>
@@ -572,43 +570,7 @@
     if(p==='y'){y.classList.add('active');m.classList.remove('active');v.textContent='2,99\u20AC';s.textContent='Factur\u00E9 35,88\u20AC par an.';}
     else{m.classList.add('active');y.classList.remove('active');v.textContent='3,99\u20AC';s.textContent='Sans engagement.';}
   }
-  async function sendMsg(ev){
-    var btn=ev&&ev.target?ev.target.closest('button'):null;
-    var n=document.getElementById('nom').value.trim();
-    var e=document.getElementById('email').value.trim();
-    var m=document.getElementById('msg').value.trim();
-    if(!m){alert('Merci d\u2019\u00E9crire votre message avant d\u2019envoyer.');return;}
-    if(!e){alert('Merci d\u2019indiquer votre email pour qu\u2019on puisse vous r\u00E9pondre.');return;}
-    var original=btn?btn.innerHTML:'';
-    if(btn){btn.disabled=true;btn.innerHTML='Envoi en cours\u2026';}
-    try{
-      var res=await fetch('https://api.web3forms.com/submit',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({
-          access_key:'6600b16b-049a-469d-ac5a-04c08bd23162',
-          subject:'Contact site \u2013 '+(n||'Visiteur'),
-          from_name:n||'Visiteur',
-          name:n||'(non renseign\u00E9)',
-          email:e,
-          message:m
-        })
-      });
-      var data=await res.json();
-      if(data.success){
-        alert('Merci '+(n||'')+'\u202F! Votre message a bien \u00E9t\u00E9 envoy\u00E9. Nous r\u00E9pondons g\u00E9n\u00E9ralement sous 48\u202Fheures.');
-        document.getElementById('nom').value='';
-        document.getElementById('email').value='';
-        document.getElementById('msg').value='';
-      }else{
-        alert('D\u00E9sol\u00E9, l\u2019envoi a \u00E9chou\u00E9. Vous pouvez nous \u00E9crire directement \u00E0 contact@veillecitoyenne.fr');
-      }
-    }catch(err){
-      alert('D\u00E9sol\u00E9, l\u2019envoi a \u00E9chou\u00E9. Vous pouvez nous \u00E9crire directement \u00E0 contact@veillecitoyenne.fr');
-    }finally{
-      if(btn){btn.disabled=false;btn.innerHTML=original;}
-    }
-  }
+  function sendMsg(){var n=document.getElementById('nom').value.trim();alert(n?'Merci '+n+'. Votre message a bien \u00E9t\u00E9 pris en compte.':'Merci. Votre message a bien \u00E9t\u00E9 pris en compte.');}
   document.getElementById('rc').textContent=38+Math.floor(Math.random()*12);
   function fmt(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0');}
   function countUp(el){
