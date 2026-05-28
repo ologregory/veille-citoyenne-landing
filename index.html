@@ -41,9 +41,8 @@
   .nav-inner{max-width:1120px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
   .brand{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:-.02em}
 
-  .mark{width:30px;height:30px;border:1.5px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;position:relative}
-  .mark img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
-  .mark::after{content:"";position:absolute;width:7px;height:7px;background:var(--primary);border-radius:50%;top:-2px;right:-2px;z-index:2}
+  .mark{width:32px;height:32px;display:flex;align-items:center;justify-content:center;position:relative}
+  .mark img{width:100%;height:100%;object-fit:contain;display:block}
   .nav-links{display:flex;align-items:center;gap:34px;font-size:.9rem}
   .nav-links a:not(.nav-cta){color:var(--muted);transition:color .2s}
   .nav-links a:not(.nav-cta):hover{color:var(--ink)}
@@ -130,7 +129,6 @@
   .pos-arr{animation:arrShift 2.4s ease-in-out infinite}
   .pos-arr:nth-of-type(2){animation-delay:.4s}
   @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
-  .mark::after{animation:blink 2.4s ease-in-out infinite}
   @media(max-width:860px){
     .hero-grid{grid-template-columns:1fr;gap:40px}
     .hero h1{max-width:100%}
