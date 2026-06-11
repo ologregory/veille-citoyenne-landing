@@ -70,6 +70,22 @@
   .hero-soft b{color:var(--ink);font-weight:600}
   /* store badges */
   .store-badges{display:flex;gap:13px;flex-wrap:wrap}
+  /* QR CODE */
+  .qr-block{display:flex;flex-direction:column;align-items:center;gap:10px;margin:0 auto 28px;max-width:240px}
+  .qr-frame{background:#fff;padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 24px rgba(15,17,54,.12);line-height:0}
+  .qr-frame canvas, .qr-frame img{display:block;width:160px;height:160px}
+  .qr-caption{font-size:.84rem;color:var(--muted);text-align:center;line-height:1.45}
+  .qr-caption b{color:var(--ink);font-weight:600}
+  /* QR dans le hero : aligné à gauche, plus compact */
+  .hero-qr{margin:18px 0;align-items:flex-start}
+  .hero-qr .qr-frame{padding:10px;border-radius:12px;box-shadow:0 6px 18px rgba(15,17,54,.08)}
+  .hero-qr .qr-frame canvas, .hero-qr .qr-frame img, .hero-qr .qr-frame svg{width:120px;height:120px}
+  .hero-qr .qr-caption{text-align:left}
+  /* Layout hero : QR à gauche + boutons empilés à droite */
+  .hero-install{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:14px}
+  .hero-install .hero-qr{margin:0}
+  .hero-stack{flex-direction:column;align-items:stretch}
+  .hero-stack .store-badge{justify-content:flex-start}
   .store-badge{display:inline-flex;align-items:center;gap:11px;background:var(--ink);color:#fff;padding:11px 20px;border-radius:14px;text-decoration:none;transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s}
   .store-badge:hover{transform:translateY(-3px);background:var(--primary)}
   .store-badge svg{width:22px;height:22px;flex-shrink:0;fill:#fff}
@@ -357,15 +373,20 @@
       <h1 class="display rv" style="transition-delay:.06s">Pour les <span style="white-space:nowrap">consommateurs</span> qui ne laissent <em>rien au hasard.</em></h1>
       <p class="hero-lead rv" style="transition-delay:.12s">Un produit contamin&eacute;, une arnaque, un m&eacute;dicament retir&eacute;, une alerte pr&egrave;s de chez vous... Nous croisons jour et nuit des sources officielles fran&ccedil;aises et europ&eacute;ennes. Vous recevez uniquement ce qui vous concerne.</p>
       <div class="hero-actions rv" style="transition-delay:.18s">
-        <div class="store-badges">
-          <a href="#" class="store-badge" onclick="openAndroidGuide(event)" aria-label="Installer sur Android">
-            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
-            <span><span class="sb-top">Sur Android</span><span class="sb-big">Installer l'application</span></span>
-          </a>
-          <a href="#" class="store-badge" onclick="openIosGuide(event)" aria-label="Installer sur iPhone via l'&eacute;cran d'accueil">
-            <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-            <span><span class="sb-top">Sur iPhone</span><span class="sb-big">Ajouter &agrave; l'&eacute;cran d'accueil</span></span>
-          </a>
+        <div class="hero-install">
+          <div class="qr-block hero-qr">
+            <div class="qr-frame" id="qrFrameHero" aria-label="QR code vers app.veillecitoyenne.fr"></div>
+          </div>
+          <div class="store-badges hero-stack">
+            <a href="#" class="store-badge" onclick="openAndroidGuide(event)" aria-label="Installer sur Android">
+              <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+              <span><span class="sb-top">Sur Android</span><span class="sb-big">Installer l'application</span></span>
+            </a>
+            <a href="#" class="store-badge" onclick="openIosGuide(event)" aria-label="Installer sur iPhone via l'&eacute;cran d'accueil">
+              <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+              <span><span class="sb-top">Sur iPhone</span><span class="sb-big">Ajouter &agrave; l'&eacute;cran d'accueil</span></span>
+            </a>
+          </div>
         </div>
         <span class="hero-soft"><b>Essai Premium 14 jours.</b> Sans carte bancaire.</span>
       </div>
@@ -406,9 +427,10 @@
   <div class="feat-row rv"><div class="feat-n">1</div><div class="feat-h">Dix-sept sources, dans une seule App</div><div class="feat-d">RappelConso, ANSM, AMF, Bodacc, Safety Gate EU et bien d'autres, r&eacute;unies et normalis&eacute;es en une seule application coh&eacute;rente.</div></div>
   <div class="feat-row rv"><div class="feat-n">2</div><div class="feat-h">Filtr&eacute; pour vous, et vous seul</div><div class="feat-d">Vous choisissez vos domaines. Vous ne recevez que les alertes qui vous concernent, sans le bruit de tout le reste.</div></div>
   <div class="feat-row rv"><div class="feat-n">3</div><div class="feat-h">La conduite &agrave; tenir, pas juste l'alerte</div><div class="feat-d">Chaque notification renvoie &agrave; une fiche claire : motif, niveau de risque et marche &agrave; suivre, issue de la source officielle.</div></div>
-  <div class="feat-row rv"><div class="feat-n">4</div><div class="feat-h">Z&eacute;ro donn&eacute;e, par conception</div><div class="feat-d">Vos pr&eacute;f&eacute;rences restent sur votre appareil. Aucune donn&eacute;e personnelle identifiable collect&eacute;e. Aucune publicit&eacute;.</div></div>
-  <div class="feat-row rv"><div class="feat-n">5</div><div class="feat-h">Le bilan quotidien, pendant que vous dormez</div><div class="feat-d">L'application surveille la nuit et rassemble l'essentiel. Vous lisez votre bilan le matin, sans rien avoir &agrave; chercher.</div></div>
-  <div class="feat-row rv"><div class="feat-n">6</div><div class="feat-h">La surveillance environnementale, autour de vous</div><div class="feat-d">Qualit&eacute; de l'air, qualit&eacute; de l'eau, crues et m&eacute;t&eacute;o pr&egrave;s de chez vous. L'environnement qui vous entoure, surveill&eacute; en continu.</div></div>
+  <div class="feat-row rv"><div class="feat-n">4</div><div class="feat-h">Scanner un produit, savoir tout de suite</div><div class="feat-d">Un code-barres scann&eacute; en magasin ou &agrave; la maison, et vous savez instantan&eacute;ment si le produit fait l'objet d'un rappel officiel (RappelConso et Safety Gate EU).</div></div>
+  <div class="feat-row rv"><div class="feat-n">5</div><div class="feat-h">Z&eacute;ro donn&eacute;e, par conception</div><div class="feat-d">Vos pr&eacute;f&eacute;rences restent sur votre appareil. Aucune donn&eacute;e personnelle identifiable collect&eacute;e. Aucune publicit&eacute;.</div></div>
+  <div class="feat-row rv"><div class="feat-n">6</div><div class="feat-h">Le bilan quotidien, pendant que vous dormez</div><div class="feat-d">L'application surveille la nuit et rassemble l'essentiel. Vous lisez votre bilan le matin, sans rien avoir &agrave; chercher.</div></div>
+  <div class="feat-row rv"><div class="feat-n">7</div><div class="feat-h">La surveillance environnementale, autour de vous</div><div class="feat-d">Qualit&eacute; de l'air, qualit&eacute; de l'eau, crues et m&eacute;t&eacute;o pr&egrave;s de chez vous. L'environnement qui vous entoure, surveill&eacute; en continu.</div></div>
 </section>
 
 <section class="how" id="fonctionnement">
@@ -471,6 +493,7 @@
         <div class="pc-amt"><span id="pv">2,99&euro;</span> <small>/ mois</small></div>
         <div class="pc-sub" id="ps">Factur&eacute; 35,88&euro; par an.</div>
         <ul class="pc-list">
+          <li><b>Scan code-barres :</b> v&eacute;rifiez en un geste si un produit est rappel&eacute; (RappelConso et Safety Gate EU).</li>
           <li>ANSM, AMF, Bodacc inclus</li>
           <li>Safety Gate EU complet</li>
           <li>Sources environnement et alimentation</li>
@@ -487,7 +510,7 @@
   <details class="faq-item rv"><summary>D'o&ugrave; viennent les alertes ?<span class="plus">+</span></summary><div class="ans">Exclusivement de sources officielles fran&ccedil;aises et europ&eacute;ennes : RappelConso, ANSM, AMF, Bodacc, Safety Gate EU et bien d'autres. Aucune information n'est &eacute;ditorialis&eacute;e.</div></details>
   <details class="faq-item rv"><summary>Vraiment aucune donn&eacute;e collect&eacute;e ?<span class="plus">+</span></summary><div class="ans">Vos pr&eacute;f&eacute;rences sont stock&eacute;es localement sur votre appareil. Aucune donn&eacute;e personnelle identifiable n'est conserv&eacute;e sur nos serveurs par d&eacute;faut. Conforme RGPD.</div></details>
   <details class="faq-item rv"><summary>Que re&ccedil;ois-je gratuitement ?<span class="plus">+</span></summary><div class="ans">Le domaine Alimentation de RappelConso plus un domaine de votre choix, les push d'alertes vitales (Listeria, Salmonella, E.coli et autres risques graves) et la consultation manuelle des alertes restent gratuits.</div></details>
-  <details class="faq-item rv"><summary>&Agrave; quoi sert le Premium ?<span class="plus">+</span></summary><div class="ans">Le Premium d&eacute;bloque les sources ANSM, AMF, Bodacc, Safety Gate EU complet ainsi que les sources environnement et alimentation, pour une couverture totale.</div></details>
+  <details class="faq-item rv"><summary>&Agrave; quoi sert le Premium ?<span class="plus">+</span></summary><div class="ans">Le Premium d&eacute;bloque le scan de codes-barres pour v&eacute;rifier instantan&eacute;ment si un produit est rappel&eacute; (RappelConso et Safety Gate EU), les sources ANSM, AMF, Bodacc, Safety Gate EU complet ainsi que les sources environnement et alimentation, pour une couverture totale.</div></details>
   <details class="faq-item rv"><summary>Quand suis-je pr&eacute;venu ?<span class="plus">+</span></summary><div class="ans">D&egrave;s la publication officielle de l'alerte. L'application veille en continu en arri&egrave;re-plan pour vous notifier au plus t&ocirc;t.</div></details>
   <details class="faq-item rv"><summary>Puis-je r&eacute;silier &agrave; tout moment ?<span class="plus">+</span></summary><div class="ans">Oui. L'abonnement est sans engagement et r&eacute;siliable en un clic depuis l'application. Vous gardez l'acc&egrave;s jusqu'&agrave; la fin de la p&eacute;riode pay&eacute;e.</div></details>
 </section>
@@ -497,6 +520,10 @@
     <h2 class="rv">Pr&ecirc;t &agrave; &ecirc;tre inform&eacute;<br><em>avant tout le monde ?</em></h2>
     <p class="rv" style="transition-delay:.08s">Installez Veille Citoyenne et laissez l'application veiller pour vous.</p>
     <div class="rv" style="transition-delay:.16s">
+      <div class="qr-block">
+        <div class="qr-frame" id="qrFrame" aria-label="QR code vers app.veillecitoyenne.fr"></div>
+        <div class="qr-caption">Scannez avec votre t&eacute;l&eacute;phone<br><b>app.veillecitoyenne.fr</b></div>
+      </div>
       <div class="store-badges" style="justify-content:center">
         <a href="#" class="store-badge" onclick="openAndroidGuide(event)" aria-label="Installer sur Android">
           <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
@@ -616,5 +643,28 @@
     <button class="ios-close" onclick="closeIosGuide()">J'ai compris</button>
   </div>
 </div>
+<!-- QR CODE : génération côté navigateur -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+  (function(){
+    try {
+      var qr = qrcode(0, 'M'); // type 0 = auto, niveau correction M (15%)
+      qr.addData('https://app.veillecitoyenne.fr');
+      qr.make();
+      var svgTag = qr.createSvgTag({ cellSize: 5, margin: 0, scalable: true });
+      ['qrFrame','qrFrameHero'].forEach(function(id){
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.innerHTML = svgTag;
+        var svg = el.querySelector('svg');
+        if (svg) {
+          var size = (id === 'qrFrameHero') ? '120' : '160';
+          svg.setAttribute('width', size);
+          svg.setAttribute('height', size);
+        }
+      });
+    } catch(e) { console.warn('QR code non généré', e); }
+  })();
+</script>
 </body>
 </html>
