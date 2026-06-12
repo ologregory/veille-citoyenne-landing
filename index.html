@@ -7,6 +7,104 @@
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="shortcut icon" href="logo.png">
 <link rel="apple-touch-icon" href="logo.png">
+
+<!-- SEO -->
+<meta name="description" content="Pour les consommateurs qui ne laissent rien au hasard. Veille Citoyenne croise 17 sources officielles françaises et européennes (RappelConso, ANSM, AMF, Safety Gate EU…) et vous prévient des rappels produits, médicaments, arnaques et alertes près de chez vous.">
+<meta name="keywords" content="rappel produit, RappelConso, alerte sanitaire, ANSM, médicament rappelé, AMF arnaque, Safety Gate, Veille Citoyenne, alerte consommateur, sécurité alimentaire, qualité eau, qualité air">
+<meta name="author" content="Veille Citoyenne">
+<meta name="application-name" content="Veille Citoyenne">
+<meta name="theme-color" content="#4F55E9">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<link rel="canonical" href="https://veillecitoyenne.fr/">
+<link rel="alternate" hreflang="fr" href="https://veillecitoyenne.fr/">
+<link rel="alternate" hreflang="x-default" href="https://veillecitoyenne.fr/">
+
+<!-- Open Graph (Facebook, LinkedIn, WhatsApp, iMessage, Slack, Discord...) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Veille Citoyenne">
+<meta property="og:title" content="Veille Citoyenne — L'alerte officielle, avant tout le monde">
+<meta property="og:description" content="Pour les consommateurs qui ne laissent rien au hasard. 17 sources officielles, vous recevez l'essentiel.">
+<meta property="og:url" content="https://veillecitoyenne.fr/">
+<meta property="og:image" content="https://veillecitoyenne.fr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Veille Citoyenne — Pour les consommateurs qui ne laissent rien au hasard.">
+<meta property="og:locale" content="fr_FR">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Veille Citoyenne — L'alerte officielle, avant tout le monde">
+<meta name="twitter:description" content="Pour les consommateurs qui ne laissent rien au hasard. 17 sources officielles, vous recevez l'essentiel.">
+<meta name="twitter:image" content="https://veillecitoyenne.fr/og-image.png">
+<meta name="twitter:image:alt" content="Veille Citoyenne — Pour les consommateurs qui ne laissent rien au hasard.">
+
+<!-- Schema.org / JSON-LD : données structurées pour Google -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://veillecitoyenne.fr/#organization",
+      "name": "Veille Citoyenne",
+      "url": "https://veillecitoyenne.fr/",
+      "logo": "https://veillecitoyenne.fr/logo.png",
+      "email": "contact@veillecitoyenne.fr",
+      "founder": { "@type": "Person", "name": "Grégory Solaz" },
+      "foundingLocation": { "@type": "Place", "name": "Toulouse, France" },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "20 rue Louis Blanc",
+        "postalCode": "31400",
+        "addressLocality": "Toulouse",
+        "addressCountry": "FR"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://veillecitoyenne.fr/#website",
+      "url": "https://veillecitoyenne.fr/",
+      "name": "Veille Citoyenne",
+      "inLanguage": "fr-FR",
+      "publisher": { "@id": "https://veillecitoyenne.fr/#organization" }
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Veille Citoyenne",
+      "url": "https://app.veillecitoyenne.fr/",
+      "applicationCategory": "LifestyleApplication",
+      "operatingSystem": "Android, iOS, Web",
+      "description": "Application qui agrège 17 sources officielles françaises et européennes pour vous alerter en temps réel des rappels produits, médicaments, arnaques financières, faillites et alertes environnementales.",
+      "inLanguage": "fr-FR",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Gratuit",
+          "price": "0",
+          "priceCurrency": "EUR",
+          "description": "Alertes vitales RappelConso et consultation manuelle"
+        },
+        {
+          "@type": "Offer",
+          "name": "Premium mensuel",
+          "price": "3.99",
+          "priceCurrency": "EUR",
+          "description": "Toutes les sources, scan code-barres, bilan quotidien"
+        },
+        {
+          "@type": "Offer",
+          "name": "Premium annuel",
+          "price": "35.88",
+          "priceCurrency": "EUR",
+          "description": "Toutes les sources, scan code-barres, bilan quotidien — 14 jours d'essai gratuit"
+        }
+      ],
+      "publisher": { "@id": "https://veillecitoyenne.fr/#organization" }
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -44,8 +142,8 @@
   .nav-inner{max-width:1120px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
   .brand{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:-.02em}
 
-  .mark{width:32px;height:32px;display:flex;align-items:center;justify-content:center;position:relative}
-  .mark img{width:100%;height:100%;object-fit:cover;display:block;border-radius:8px}
+  .mark{width:44px;height:44px;display:flex;align-items:center;justify-content:center;position:relative}
+  .mark img{width:100%;height:100%;object-fit:cover;display:block;border-radius:11px}
   .nav-links{display:flex;align-items:center;gap:34px;font-size:.9rem}
   .nav-links a:not(.nav-cta){color:var(--muted);transition:color .2s}
   .nav-links a:not(.nav-cta):hover{color:var(--ink)}
@@ -428,9 +526,8 @@
   <div class="feat-row rv"><div class="feat-n">2</div><div class="feat-h">Filtr&eacute; pour vous, et vous seul</div><div class="feat-d">Vous choisissez vos domaines. Vous ne recevez que les alertes qui vous concernent, sans le bruit de tout le reste.</div></div>
   <div class="feat-row rv"><div class="feat-n">3</div><div class="feat-h">La conduite &agrave; tenir, pas juste l'alerte</div><div class="feat-d">Chaque notification renvoie &agrave; une fiche claire : motif, niveau de risque et marche &agrave; suivre, issue de la source officielle.</div></div>
   <div class="feat-row rv"><div class="feat-n">4</div><div class="feat-h">Scanner un produit, savoir tout de suite</div><div class="feat-d">Un code-barres scann&eacute; en magasin ou &agrave; la maison, et vous savez instantan&eacute;ment si le produit fait l'objet d'un rappel officiel (RappelConso et Safety Gate EU).</div></div>
-  <div class="feat-row rv"><div class="feat-n">5</div><div class="feat-h">Z&eacute;ro donn&eacute;e, par conception</div><div class="feat-d">Vos pr&eacute;f&eacute;rences restent sur votre appareil. Aucune donn&eacute;e personnelle identifiable collect&eacute;e. Aucune publicit&eacute;.</div></div>
-  <div class="feat-row rv"><div class="feat-n">6</div><div class="feat-h">Le bilan quotidien, pendant que vous dormez</div><div class="feat-d">L'application surveille la nuit et rassemble l'essentiel. Vous lisez votre bilan le matin, sans rien avoir &agrave; chercher.</div></div>
-  <div class="feat-row rv"><div class="feat-n">7</div><div class="feat-h">La surveillance environnementale, autour de vous</div><div class="feat-d">Qualit&eacute; de l'air, qualit&eacute; de l'eau, crues et m&eacute;t&eacute;o pr&egrave;s de chez vous. L'environnement qui vous entoure, surveill&eacute; en continu.</div></div>
+  <div class="feat-row rv"><div class="feat-n">5</div><div class="feat-h">Le bilan quotidien, pendant que vous dormez</div><div class="feat-d">L'application surveille la nuit et rassemble l'essentiel. Vous lisez votre bilan le matin, sans rien avoir &agrave; chercher.</div></div>
+  <div class="feat-row rv"><div class="feat-n">6</div><div class="feat-h">La surveillance environnementale, autour de vous</div><div class="feat-d">Qualit&eacute; de l'air, qualit&eacute; de l'eau, crues et m&eacute;t&eacute;o pr&egrave;s de chez vous. L'environnement qui vous entoure, surveill&eacute; en continu.</div></div>
 </section>
 
 <section class="how" id="fonctionnement">
@@ -483,7 +580,7 @@
           <li>RappelConso : Alimentation + 1 domaine au choix</li>
           <li>Push alertes vitales (Listeria, Salmonella, E.coli...)</li>
           <li>Consultation manuelle des alertes</li>
-          <li>Z&eacute;ro donn&eacute;e, z&eacute;ro publicit&eacute;</li>
+          <li>Z&eacute;ro publicit&eacute;</li>
         </ul>
         <button class="pc-btn" onclick="location.href='#telecharger'">Commencer gratuitement</button>
       </div>
@@ -536,7 +633,7 @@
       </div>
     </div>
     <div class="cta-chips rv" style="transition-delay:.24s">
-      <span>Gratuit</span><span>Donn&eacute;es officielles</span><span>Z&eacute;ro donn&eacute;e collect&eacute;e</span><span>Z&eacute;ro pub</span><span>Bient&ocirc;t sur l'App Store et Google Play</span>
+      <span>Gratuit</span><span>Donn&eacute;es officielles</span><span>Z&eacute;ro pub</span><span>Bient&ocirc;t sur l'App Store et Google Play</span>
     </div>
   </div>
 </section>

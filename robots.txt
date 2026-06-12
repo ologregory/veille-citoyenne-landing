@@ -1,0 +1,8 @@
+# Robots.txt — Veille Citoyenne (landing)
+# https://veillecitoyenne.fr
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://veillecitoyenne.fr/sitemap.xml
