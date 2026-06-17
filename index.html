@@ -301,14 +301,14 @@
 
   /* PROOF numbers */
   .proof{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
-  /* Image pleine largeur section 01 (PNG transparent) */
-  .proof-banner{margin-top:56px;width:100%}
-  .proof-banner-img{width:100%;height:auto;display:block;object-fit:contain}
-  @media(max-width:760px){.proof-banner{margin-top:40px}}
-  /* Image pleine largeur section 05 (PNG transparent) */
-  .sources-banner{margin-top:50px;width:100%}
-  .sources-banner-img{width:100%;height:auto;display:block;object-fit:contain}
-  @media(max-width:760px){.sources-banner{margin-top:36px}}
+  /* Image pleine largeur section 01 (PNG transparent) - sort du wrap */
+  .proof-banner{margin:20px calc(50% - 50vw) 0;width:100vw;max-width:none}
+  .proof-banner-img{width:100%;height:auto;display:block;object-fit:contain;max-height:90vh}
+  @media(max-width:760px){.proof-banner{margin:18px calc(50% - 50vw) 0}}
+  /* Image pleine largeur section 05 (PNG transparent) - sort du wrap */
+  .sources-banner{margin:20px calc(50% - 50vw) 0;width:100vw;max-width:none}
+  .sources-banner-img{width:100%;height:auto;display:block;object-fit:contain;max-height:90vh}
+  @media(max-width:760px){.sources-banner{margin:18px calc(50% - 50vw) 0}}
   .proof-item{padding:0 30px;border-left:1px solid var(--line)}
   .proof-item:first-child{padding-left:0;border-left:none}
   @media(max-width:760px){
@@ -570,7 +570,7 @@
   </div>
 </header>
 
-<section class="wrap" style="padding-bottom:40px">
+<section class="wrap" style="padding-bottom:0">
   <div class="sec-tag rv"><span class="sec-num">01</span><span class="eyebrow">En chiffres</span><hr class="hr-line"></div>
   <div class="proof rv">
     <div class="proof-item"><div class="proof-big"><span class="cnt" data-to="15226">0</span></div><div class="proof-lbl">alertes agr&eacute;g&eacute;es depuis le lancement</div></div>
@@ -584,7 +584,7 @@
   </div>
 </section>
 
-<section class="wrap" id="fonctionnalites" style="padding-top:170px">
+<section class="wrap" id="fonctionnalites" style="padding-top:40px">
   <div class="sec-tag rv"><span class="sec-num">02</span><span class="eyebrow">Ce qu'on fait pour vous</span><hr class="hr-line"></div>
   <div class="feat-row rv"><div class="feat-n">1</div><div class="feat-h">Dix-sept sources, dans une seule App</div><div class="feat-d">RappelConso, ANSM, AMF, Bodacc, Safety Gate EU et bien d'autres, r&eacute;unies et normalis&eacute;es en une seule application coh&eacute;rente.</div></div>
   <div class="feat-row rv"><div class="feat-n">2</div><div class="feat-h">Filtr&eacute; pour vous, et vous seul</div><div class="feat-d">Vous choisissez vos domaines. Vous ne recevez que les alertes qui vous concernent, sans le bruit de tout le reste.</div></div>
@@ -652,7 +652,7 @@
   </div>
 </section>
 
-<section id="sources">
+<section id="sources" style="padding-bottom:30px">
   <div class="wrap">
     <div class="sec-tag rv"><span class="sec-num">05</span><span class="eyebrow">Nos 17 sources officielles</span><hr class="hr-line"></div>
     <h2 class="rv" style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;max-width:20ch;margin-bottom:44px">Uniquement des donn&eacute;es publiques.</h2>
@@ -669,7 +669,7 @@
   </div>
 </section>
 
-<section class="wrap" style="padding-bottom:210px">
+<section class="wrap" style="padding-top:60px;padding-bottom:210px">
   <div class="sec-tag rv"><span class="sec-num">06</span><span class="eyebrow">Notre position</span><hr class="hr-line"></div>
   <h2 class="rv" style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;max-width:22ch;margin-bottom:54px">Entre l'&Eacute;tat et la presse, il y avait un vide. On l'a combl&eacute;.</h2>
   <div class="pos rv">
