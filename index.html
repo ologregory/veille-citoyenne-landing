@@ -215,7 +215,7 @@
   .hero-phone-wrap::before{content:"";position:absolute;width:330px;height:330px;background:radial-gradient(circle,var(--primary-soft) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);z-index:0}
   .phone{position:relative;z-index:1;width:288px;background:var(--ink);border-radius:46px;padding:11px;box-shadow:0 40px 80px -20px rgba(19,19,42,.4)}
   .phone-screen{background:#000;border-radius:36px;overflow:hidden;aspect-ratio:9/19;display:flex;flex-direction:column;position:relative}
-  .phone-img{width:100%;height:100%;object-fit:cover;display:block;border-radius:36px}
+  .phone-img{width:100%;height:100%;object-fit:contain;display:block;border-radius:36px}
   .phone-bar{display:flex;gap:5px;justify-content:center;padding:14px 0 0}
   .pb-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5)}
   .phone-head{padding:20px 22px 22px;color:#fff}
@@ -301,6 +301,14 @@
 
   /* PROOF numbers */
   .proof{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  /* Image pleine largeur section 01 */
+  .proof-banner{margin-top:56px;width:100%;border-radius:18px;overflow:hidden;box-shadow:0 12px 32px rgba(15,17,54,.08)}
+  .proof-banner-img{width:100%;height:auto;display:block;object-fit:cover}
+  @media(max-width:760px){.proof-banner{margin-top:40px;border-radius:14px}}
+  /* Image pleine largeur section 05 (sous le bandeau déroulant) */
+  .sources-banner{margin-top:50px;width:100%;border-radius:18px;overflow:hidden;box-shadow:0 12px 32px rgba(15,17,54,.08)}
+  .sources-banner-img{width:100%;height:auto;display:block;object-fit:cover}
+  @media(max-width:760px){.sources-banner{margin-top:36px;border-radius:14px}}
   .proof-item{padding:0 30px;border-left:1px solid var(--line)}
   .proof-item:first-child{padding-left:0;border-left:none}
   @media(max-width:760px){
@@ -321,6 +329,24 @@
   .feat-h{font-family:var(--display);font-size:1.6rem;font-weight:600;line-height:1.12;letter-spacing:-.02em}
   .feat-d{color:var(--muted);font-size:1.02rem;max-width:48ch;padding-top:6px;text-align:justify;-webkit-hyphens:auto;hyphens:auto}
   @media(max-width:760px){.feat-row{grid-template-columns:1fr;gap:12px}}
+  /* SECTION POUR QUI ? */
+  .who-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:24px;align-items:start}
+  .who-grid{display:grid;grid-template-columns:1fr;gap:18px}
+  .who-image{position:sticky;top:90px;border-radius:18px;overflow:hidden;box-shadow:0 12px 32px rgba(15,17,54,.08);background:linear-gradient(135deg,var(--primary-soft) 0%,#EEF0FF 100%);min-height:480px;display:flex;align-items:center;justify-content:center}
+  .who-image-img{width:100%;height:100%;display:block;object-fit:cover}
+  @media(max-width:920px){.who-layout{grid-template-columns:1fr;gap:30px}.who-image{position:relative;top:auto;min-height:240px}}
+  .who-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;align-items:flex-start;gap:18px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+  .who-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(15,17,54,.06);border-color:var(--primary)}
+  .who-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .who-icon svg{width:24px;height:24px;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .who-icon.beige{background:#FFE9B8;color:#A66C00}
+  .who-icon.bluepale{background:#D6E5FF;color:#2A4D9E}
+  .who-icon.pink{background:#F3D6FF;color:#7E2A9E}
+  .who-icon.greenpale{background:#CFEDDC;color:#1F7A4D}
+  .who-icon.violetpale{background:#DDE0FF;color:#3C42C7}
+  .who-content{flex:1;min-width:0}
+  .who-title{font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--ink);margin-bottom:5px}
+  .who-desc{font-size:.92rem;color:var(--muted);line-height:1.5}
 
   /* HOW horizontal */
   .how{background:var(--ink);color:var(--paper)}
@@ -421,9 +447,9 @@
   @media(max-width:760px){.foot-top{grid-template-columns:1fr 1fr}}
   /* ===== PASSE MOBILE GLOBALE ===== */
   @media(max-width:760px){
-    /* espacements + marges latérales */
+    /* espacements + marges latérales (+ petite marge de sécurité pour décoller du bord) */
     section{padding:74px 0!important}
-    .wrap{padding:0 26px}
+    .wrap{padding:0 22px}
     .sec-tag{margin-bottom:34px}
     /* contenu centré */
     .feat-row,.feat-d,.feat-h,.proof-item,.proof-lbl,
@@ -440,9 +466,14 @@
     .hero-lead{text-align:left;hyphens:none;-webkit-hyphens:none;margin:0 0 40px}
     .hero-right{align-items:center}
     .hero-soft{width:100%}
+    /* QR + boutons d'installation centrés sur mobile */
+    .hero-install{flex-direction:column;align-items:center;gap:18px;width:100%}
+    .hero-install .hero-qr{align-items:center}
+    .hero-install .hero-qr .qr-caption{text-align:center}
     /* boutons stores pleine largeur empilés */
     .store-badges{flex-direction:column;width:100%;gap:10px}
     .store-badges .store-badge{width:100%;justify-content:center}
+    .hero-stack{width:100%}
     .sec-num{font-size:.95rem}
     /* fonctionnalités centrées (mise en page validée) */
     .feat-row{display:block;padding:30px 0;text-align:center}
@@ -456,11 +487,11 @@
     /* comment ça marche centré */
     .how-grid{gap:38px;margin-top:10px}
     .how-step{border-left:none!important;padding:0 6px;text-align:center}
-    /* position : cartes centrées, titre section à gauche */
+    /* position : cartes centrées, flèches verticales (rotation 90°) */
     .pos{gap:18px}
     .pos-c{text-align:center}
     .pos-c.edge{padding:18px 12px}
-    .pos-arr{text-align:center;padding:6px 0}
+    .pos-arr{text-align:center;padding:6px 0;transform:rotate(90deg);display:block;font-size:1.6rem}
     .pos-tagline{margin-left:auto;margin-right:auto}
     /* tarifs centrés, listes à gauche pour lisibilité */
     .price-card{text-align:center}
@@ -547,6 +578,10 @@
     <div class="proof-item"><div class="proof-big"><span class="cnt" data-to="4137">0</span></div><div class="proof-lbl">alertes Safety Gate EU en 2024</div></div>
     <div class="proof-item"><div class="proof-big" style="color:var(--primary)">1<span class="u">er</span></div><div class="proof-lbl">en France sur ce p&eacute;rim&egrave;tre multi-domaines</div></div>
   </div>
+  <!-- Image pleine largeur sous les chiffres -->
+  <div class="proof-banner rv">
+    <img src="section-banner.jpg" alt="Veille Citoyenne en chiffres" class="proof-banner-img">
+  </div>
 </section>
 
 <section class="wrap" id="fonctionnalites" style="padding-top:170px">
@@ -557,11 +592,57 @@
   <div class="feat-row rv"><div class="feat-n">4</div><div class="feat-h">Scanner un produit, savoir tout de suite</div><div class="feat-d">Un code-barres scann&eacute; en magasin ou &agrave; la maison, et vous savez instantan&eacute;ment si le produit fait l'objet d'un rappel officiel (RappelConso et Safety Gate EU).</div></div>
   <div class="feat-row rv"><div class="feat-n">5</div><div class="feat-h">Le bilan quotidien, pendant que vous dormez</div><div class="feat-d">L'application surveille la nuit et rassemble l'essentiel. Vous lisez votre bilan le matin, sans rien avoir &agrave; chercher.</div></div>
   <div class="feat-row rv"><div class="feat-n">6</div><div class="feat-h">La surveillance environnementale, autour de vous</div><div class="feat-d">Qualit&eacute; de l'air, qualit&eacute; de l'eau, crues et m&eacute;t&eacute;o pr&egrave;s de chez vous. L'environnement qui vous entoure, surveill&eacute; en continu.</div></div>
+
+  <!-- Section 03 : Pour qui ? -->
+  <div class="sec-tag rv"><span class="sec-num">03</span><span class="eyebrow">Pour qui&nbsp;?</span><hr class="hr-line"></div>
+  <div class="who-layout">
+    <div class="who-grid">
+    <div class="who-card rv">
+      <div class="who-icon beige"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M9 12h.01M15 12h.01M10 16c.5.3 1.5.5 2 .5s1.5-.2 2-.5"/><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"/></svg></div>
+      <div class="who-content">
+        <div class="who-title">Parents avec enfants</div>
+        <div class="who-desc">Rappels laits infantiles, jouets dangereux, cosm&eacute;tiques b&eacute;b&eacute;. Alert&eacute; avant de consommer.</div>
+      </div>
+    </div>
+    <div class="who-card rv">
+      <div class="who-icon bluepale"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="who-content">
+        <div class="who-title">Propri&eacute;taires</div>
+        <div class="who-desc">Sachez si un artisan est en faillite avant de signer un devis. Z&eacute;ro mauvaise surprise.</div>
+      </div>
+    </div>
+    <div class="who-card rv">
+      <div class="who-icon pink"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h16v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg></div>
+      <div class="who-content">
+        <div class="who-title">&Eacute;pargnants</div>
+        <div class="who-desc">Faux placements, arnaques crypto, conseillers douteux. Signal&eacute;s d&egrave;s leur mise en ligne par l'AMF.</div>
+      </div>
+    </div>
+    <div class="who-card rv">
+      <div class="who-icon greenpale"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg></div>
+      <div class="who-content">
+        <div class="who-title">Consommateurs attentifs</div>
+        <div class="who-desc">Tensions sur les prix, alertes sanitaires, qualit&eacute; de l'eau, prix des carburants. Tout pour consommer l'esprit tranquille.</div>
+      </div>
+    </div>
+    <div class="who-card rv">
+      <div class="who-icon violetpale"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+      <div class="who-content">
+        <div class="who-title">Acheteurs en ligne</div>
+        <div class="who-desc">Produits import&eacute;s d&eacute;fectueux, &eacute;quipements dangereux. Ce que les sites de vente ne signalent pas toujours.</div>
+      </div>
+    </div>
+    </div>
+    <!-- Image placeholder pour la colonne droite -->
+    <div class="who-image rv" style="transition-delay:.1s">
+      <img src="who-banner.jpg" alt="Pour qui Veille Citoyenne" class="who-image-img">
+    </div>
+  </div>
 </section>
 
 <section class="how" id="fonctionnement">
   <div class="wrap">
-    <div class="sec-tag rv"><span class="sec-num">03</span><span class="eyebrow">Comment &ccedil;a marche</span><hr class="hr-line"></div>
+    <div class="sec-tag rv"><span class="sec-num">04</span><span class="eyebrow">Comment &ccedil;a marche</span><hr class="hr-line"></div>
     <h2 class="rv" style="font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;margin-bottom:60px;max-width:18ch">Configur&eacute; en deux minutes. Actif pour toujours.</h2>
     <div class="how-grid">
       <div class="how-step rv"><div class="how-n">01</div><h3>T&eacute;l&eacute;chargez</h3><p>Gratuite, sans compte ni donn&eacute;e personnelle. Quelques secondes suffisent.</p></div>
@@ -573,7 +654,7 @@
 
 <section id="sources">
   <div class="wrap">
-    <div class="sec-tag rv"><span class="sec-num">04</span><span class="eyebrow">Nos 17 sources officielles</span><hr class="hr-line"></div>
+    <div class="sec-tag rv"><span class="sec-num">05</span><span class="eyebrow">Nos 17 sources officielles</span><hr class="hr-line"></div>
     <h2 class="rv" style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;max-width:20ch;margin-bottom:44px">Uniquement des donn&eacute;es publiques.</h2>
     <div class="marquee rv">
       <div class="mq-track">
@@ -581,11 +662,15 @@
         <span>RappelConso</span><span>ANSM</span><span>AMF</span><span>BODACC</span><span>Safety Gate EU</span><span>Vigicrues</span><span>M&eacute;t&eacute;o France</span><span>Hub'Eau</span><span>Atmo France</span><span>VigiEau</span><span>Odiss&eacute;</span><span>Prix Carburants</span><span>FAO</span><span>Agreste</span><span>RNM Rungis</span><span>ESA/ANSES</span><span>ANSM Disponibilit&eacute;s</span>
       </div>
     </div>
+    <!-- Image placeholder pleine largeur sous le bandeau déroulant -->
+    <div class="sources-banner rv" style="transition-delay:.1s">
+      <img src="sources-banner.jpg" alt="Veille Citoyenne sources officielles" class="sources-banner-img">
+    </div>
   </div>
 </section>
 
 <section class="wrap" style="padding-bottom:210px">
-  <div class="sec-tag rv"><span class="sec-num">05</span><span class="eyebrow">Notre position</span><hr class="hr-line"></div>
+  <div class="sec-tag rv"><span class="sec-num">06</span><span class="eyebrow">Notre position</span><hr class="hr-line"></div>
   <h2 class="rv" style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;max-width:22ch;margin-bottom:54px">Entre l'&Eacute;tat et la presse, il y avait un vide. On l'a combl&eacute;.</h2>
   <div class="pos rv">
     <div class="pos-c edge"><div class="pos-step">1</div><h3>L'&Eacute;tat publie</h3><p>Officiel, valid&eacute;. Peu visible pour la plupart des citoyens.</p></div>
@@ -598,7 +683,7 @@
 
 <section class="pricing" id="tarifs">
   <div class="wrap">
-    <div class="sec-tag rv"><span class="sec-num">06</span><span class="eyebrow">Tarifs</span><hr class="hr-line"></div>
+    <div class="sec-tag rv"><span class="sec-num">07</span><span class="eyebrow">Tarifs</span><hr class="hr-line"></div>
     <h2 class="rv" style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;max-width:20ch;margin-bottom:48px">Gratuit par d&eacute;faut. Premium si vous le souhaitez.</h2>
     <div class="price-grid rv">
       <div class="price-card free">
@@ -631,23 +716,13 @@
   </div>
 </section>
 
-<section class="wrap">
-  <div class="sec-tag rv"><span class="sec-num">07</span><span class="eyebrow">Questions fr&eacute;quentes</span><hr class="hr-line"></div>
-  <details class="faq-item rv"><summary>D'o&ugrave; viennent les alertes ?<span class="plus">+</span></summary><div class="ans">Exclusivement de sources officielles fran&ccedil;aises et europ&eacute;ennes : RappelConso, ANSM, AMF, Bodacc, Safety Gate EU et bien d'autres. Aucune information n'est &eacute;ditorialis&eacute;e.</div></details>
-  <details class="faq-item rv"><summary>Vraiment aucune donn&eacute;e collect&eacute;e ?<span class="plus">+</span></summary><div class="ans">Vos pr&eacute;f&eacute;rences sont stock&eacute;es localement sur votre appareil. Aucune donn&eacute;e personnelle identifiable n'est conserv&eacute;e sur nos serveurs par d&eacute;faut. Conforme RGPD.</div></details>
-  <details class="faq-item rv"><summary>Que re&ccedil;ois-je gratuitement ?<span class="plus">+</span></summary><div class="ans">Le domaine Alimentation de RappelConso plus un domaine de votre choix, les push d'alertes vitales (Listeria, Salmonella, E.coli et autres risques graves) et la consultation manuelle des alertes restent gratuits.</div></details>
-  <details class="faq-item rv"><summary>&Agrave; quoi sert le Premium ?<span class="plus">+</span></summary><div class="ans">Le Premium d&eacute;bloque le scan de codes-barres pour v&eacute;rifier instantan&eacute;ment si un produit est rappel&eacute; (RappelConso et Safety Gate EU), les sources ANSM, AMF, Bodacc, Safety Gate EU complet ainsi que les sources environnement et alimentation, pour une couverture totale.</div></details>
-  <details class="faq-item rv"><summary>Quand suis-je pr&eacute;venu ?<span class="plus">+</span></summary><div class="ans">D&egrave;s la publication officielle de l'alerte. L'application veille en continu en arri&egrave;re-plan pour vous notifier au plus t&ocirc;t.</div></details>
-  <details class="faq-item rv"><summary>Puis-je r&eacute;silier &agrave; tout moment ?<span class="plus">+</span></summary><div class="ans">Oui. L'abonnement est sans engagement et r&eacute;siliable en un clic depuis l'application. Vous gardez l'acc&egrave;s jusqu'&agrave; la fin de la p&eacute;riode pay&eacute;e.</div></details>
-</section>
-
 <section class="cta" id="telecharger">
   <div class="wrap">
     <h2 class="rv">Pr&ecirc;t &agrave; &ecirc;tre inform&eacute;<br><em>avant tout le monde ?</em></h2>
     <p class="rv" style="transition-delay:.08s">Installez Veille Citoyenne et laissez l'application veiller pour vous.</p>
     <div class="rv" style="transition-delay:.16s">
       <div class="qr-block">
-        <div class="qr-frame" id="qrFrame" aria-label="QR code vers app.veillecitoyenne.fr"></div>
+        <div class="qr-frame" id="qrFrameTarif" aria-label="QR code vers app.veillecitoyenne.fr"></div>
         <div class="qr-caption">Scannez avec votre t&eacute;l&eacute;phone<br><b>app.veillecitoyenne.fr</b></div>
       </div>
       <div class="store-badges" style="justify-content:center">
@@ -667,8 +742,18 @@
   </div>
 </section>
 
+<section class="wrap">
+  <div class="sec-tag rv"><span class="sec-num">08</span><span class="eyebrow">Questions fr&eacute;quentes</span><hr class="hr-line"></div>
+  <details class="faq-item rv"><summary>D'o&ugrave; viennent les alertes ?<span class="plus">+</span></summary><div class="ans">Exclusivement de sources officielles fran&ccedil;aises et europ&eacute;ennes : RappelConso, ANSM, AMF, Bodacc, Safety Gate EU et bien d'autres. Aucune information n'est &eacute;ditorialis&eacute;e.</div></details>
+  <details class="faq-item rv"><summary>Vraiment aucune donn&eacute;e collect&eacute;e ?<span class="plus">+</span></summary><div class="ans">Vos pr&eacute;f&eacute;rences sont stock&eacute;es localement sur votre appareil. Aucune donn&eacute;e personnelle identifiable n'est conserv&eacute;e sur nos serveurs par d&eacute;faut. Conforme RGPD.</div></details>
+  <details class="faq-item rv"><summary>Que re&ccedil;ois-je gratuitement ?<span class="plus">+</span></summary><div class="ans">Le domaine Alimentation de RappelConso plus un domaine de votre choix, les push d'alertes vitales (Listeria, Salmonella, E.coli et autres risques graves) et la consultation manuelle des alertes restent gratuits.</div></details>
+  <details class="faq-item rv"><summary>&Agrave; quoi sert le Premium ?<span class="plus">+</span></summary><div class="ans">Le Premium d&eacute;bloque le scan de codes-barres pour v&eacute;rifier instantan&eacute;ment si un produit est rappel&eacute; (RappelConso et Safety Gate EU), les sources ANSM, AMF, Bodacc, Safety Gate EU complet ainsi que les sources environnement et alimentation, pour une couverture totale.</div></details>
+  <details class="faq-item rv"><summary>Quand suis-je pr&eacute;venu ?<span class="plus">+</span></summary><div class="ans">D&egrave;s la publication officielle de l'alerte. L'application veille en continu en arri&egrave;re-plan pour vous notifier au plus t&ocirc;t.</div></details>
+  <details class="faq-item rv"><summary>Puis-je r&eacute;silier &agrave; tout moment ?<span class="plus">+</span></summary><div class="ans">Oui. L'abonnement est sans engagement et r&eacute;siliable en un clic depuis l'application. Vous gardez l'acc&egrave;s jusqu'&agrave; la fin de la p&eacute;riode pay&eacute;e.</div></details>
+</section>
+
 <section class="wrap" id="contact" style="padding-top:40px;padding-bottom:130px">
-  <div class="sec-tag rv"><span class="sec-num">08</span><span class="eyebrow">Nous contacter</span><hr class="hr-line"></div>
+  <div class="sec-tag rv"><span class="sec-num">09</span><span class="eyebrow">Nous contacter</span><hr class="hr-line"></div>
   <div class="contact-grid">
     <div class="ct-left rv">
       <h2>Une question ?<br>&Eacute;crivez-nous.</h2>
@@ -778,7 +863,7 @@
       qr.addData('https://app.veillecitoyenne.fr');
       qr.make();
       var svgTag = qr.createSvgTag({ cellSize: 5, margin: 0, scalable: true });
-      ['qrFrame','qrFrameHero'].forEach(function(id){
+      ['qrFrameHero','qrFrameTarif'].forEach(function(id){
         var el = document.getElementById(id);
         if (!el) return;
         el.innerHTML = svgTag;
