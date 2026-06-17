@@ -213,9 +213,9 @@
   /* PHONE mockup */
   .hero-phone-wrap{display:flex;justify-content:center;position:relative}
   .hero-phone-wrap::before{content:"";position:absolute;width:330px;height:330px;background:radial-gradient(circle,var(--primary-soft) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);z-index:0}
-  .phone{position:relative;z-index:1;width:288px;background:var(--ink);border-radius:46px;padding:11px;box-shadow:0 40px 80px -20px rgba(19,19,42,.4)}
-  .phone-screen{background:#000;border-radius:36px;overflow:hidden;aspect-ratio:9/19;display:flex;flex-direction:column;position:relative}
-  .phone-img{width:100%;height:100%;object-fit:contain;display:block;border-radius:36px}
+  .phone{position:relative;z-index:1;width:288px;background:transparent;border-radius:0;padding:0;filter:drop-shadow(0 30px 60px rgba(19,19,42,.25))}
+  .phone-screen{background:transparent;border-radius:0;overflow:visible;aspect-ratio:9/19;display:flex;flex-direction:column;position:relative}
+  .phone-img{width:100%;height:100%;object-fit:contain;display:block;border-radius:0}
   .phone-bar{display:flex;gap:5px;justify-content:center;padding:14px 0 0}
   .pb-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5)}
   .phone-head{padding:20px 22px 22px;color:#fff}
@@ -301,14 +301,14 @@
 
   /* PROOF numbers */
   .proof{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
-  /* Image pleine largeur section 01 */
-  .proof-banner{margin-top:56px;width:100%;border-radius:18px;overflow:hidden;box-shadow:0 12px 32px rgba(15,17,54,.08)}
-  .proof-banner-img{width:100%;height:auto;display:block;object-fit:cover}
-  @media(max-width:760px){.proof-banner{margin-top:40px;border-radius:14px}}
-  /* Image pleine largeur section 05 (sous le bandeau déroulant) */
-  .sources-banner{margin-top:50px;width:100%;border-radius:18px;overflow:hidden;box-shadow:0 12px 32px rgba(15,17,54,.08)}
-  .sources-banner-img{width:100%;height:auto;display:block;object-fit:cover}
-  @media(max-width:760px){.sources-banner{margin-top:36px;border-radius:14px}}
+  /* Image pleine largeur section 01 (PNG transparent) */
+  .proof-banner{margin-top:56px;width:100%}
+  .proof-banner-img{width:100%;height:auto;display:block;object-fit:contain}
+  @media(max-width:760px){.proof-banner{margin-top:40px}}
+  /* Image pleine largeur section 05 (PNG transparent) */
+  .sources-banner{margin-top:50px;width:100%}
+  .sources-banner-img{width:100%;height:auto;display:block;object-fit:contain}
+  @media(max-width:760px){.sources-banner{margin-top:36px}}
   .proof-item{padding:0 30px;border-left:1px solid var(--line)}
   .proof-item:first-child{padding-left:0;border-left:none}
   @media(max-width:760px){
@@ -332,9 +332,9 @@
   /* SECTION POUR QUI ? */
   .who-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:24px;align-items:start}
   .who-grid{display:grid;grid-template-columns:1fr;gap:18px}
-  .who-image{position:sticky;top:90px;border-radius:18px;overflow:hidden;box-shadow:0 12px 32px rgba(15,17,54,.08);background:linear-gradient(135deg,var(--primary-soft) 0%,#EEF0FF 100%);min-height:480px;display:flex;align-items:center;justify-content:center}
-  .who-image-img{width:100%;height:100%;display:block;object-fit:cover}
-  @media(max-width:920px){.who-layout{grid-template-columns:1fr;gap:30px}.who-image{position:relative;top:auto;min-height:240px}}
+  .who-image{position:sticky;top:90px;display:flex;align-items:center;justify-content:center}
+  .who-image-img{width:100%;height:auto;display:block;object-fit:contain}
+  @media(max-width:920px){.who-layout{grid-template-columns:1fr;gap:30px}.who-image{position:relative;top:auto}}
   .who-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;align-items:flex-start;gap:18px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
   .who-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(15,17,54,.06);border-color:var(--primary)}
   .who-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -563,7 +563,7 @@
     <div class="hero-phone-wrap rv" style="transition-delay:.24s">
       <div class="phone">
         <div class="phone-screen">
-          <img src="app-screen.jpg" alt="Capture de l'application Veille Citoyenne" class="phone-img">
+          <img src="app-screen.png" alt="Capture de l'application Veille Citoyenne" class="phone-img">
         </div>
       </div>
     </div>
@@ -580,7 +580,7 @@
   </div>
   <!-- Image pleine largeur sous les chiffres -->
   <div class="proof-banner rv">
-    <img src="section-banner.jpg" alt="Veille Citoyenne en chiffres" class="proof-banner-img">
+    <img src="section-banner.png" alt="Veille Citoyenne en chiffres" class="proof-banner-img">
   </div>
 </section>
 
@@ -635,7 +635,7 @@
     </div>
     <!-- Image placeholder pour la colonne droite -->
     <div class="who-image rv" style="transition-delay:.1s">
-      <img src="who-banner.jpg" alt="Pour qui Veille Citoyenne" class="who-image-img">
+      <img src="who-banner.png" alt="Pour qui Veille Citoyenne" class="who-image-img">
     </div>
   </div>
 </section>
@@ -664,7 +664,7 @@
     </div>
     <!-- Image placeholder pleine largeur sous le bandeau déroulant -->
     <div class="sources-banner rv" style="transition-delay:.1s">
-      <img src="sources-banner.jpg" alt="Veille Citoyenne sources officielles" class="sources-banner-img">
+      <img src="sources-banner.png" alt="Veille Citoyenne sources officielles" class="sources-banner-img">
     </div>
   </div>
 </section>
