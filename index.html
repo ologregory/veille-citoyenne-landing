@@ -308,7 +308,7 @@
   .proof{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
   /* Image pleine largeur section 01 (PNG transparent) - dans le wrap, largeur 100% */
   .proof-banner{margin:24px 0 0;width:100%;max-width:100%}
-  .proof-banner-img{width:100%;height:auto;display:block}
+  .proof-banner-img{width:100%;height:auto;display:block;filter:drop-shadow(0 14px 18px rgba(15,17,54,.13))}
   @media(max-width:760px){.proof-banner{margin:18px 0 0}}
   /* Forcer paddings serrés sur mobile pour sections avec style inline */
   @media(max-width:760px){
@@ -343,7 +343,7 @@
   .who-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:24px;align-items:start}
   .who-grid{display:grid;grid-template-columns:1fr;gap:18px}
   .who-image{position:sticky;top:90px;display:flex;align-items:center;justify-content:center}
-  .who-image-img{width:100%;height:auto;display:block;object-fit:contain}
+  .who-image-img{width:100%;height:auto;display:block;object-fit:contain;filter:drop-shadow(0 18px 34px rgba(15,17,54,.16))}
   @media(max-width:920px){.who-layout{grid-template-columns:1fr;gap:18px}.who-image{position:relative;top:auto}}
   .who-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;align-items:flex-start;gap:18px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
   .who-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(15,17,54,.06);border-color:var(--primary)}
@@ -389,7 +389,7 @@
   /* PRICING */
   .pricing{background:var(--paper-2)}
   .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--paper)}
-  .price-card{padding:48px 44px}
+  .price-card{padding:48px 44px;display:flex;flex-direction:column}
   .price-card.free{border-right:1px solid var(--line)}
   .price-card.pro{background:var(--ink);color:var(--paper);position:relative}
   .pc-name{font-family:var(--display);font-weight:700;font-size:1.25rem;letter-spacing:-.01em;margin-bottom:8px}
@@ -401,11 +401,11 @@
   .toggle{display:inline-flex;border:1px solid rgba(251,250,247,.24);border-radius:999px;padding:3px;margin:16px 0 10px}
   .toggle button{border:none;background:transparent;color:rgba(251,250,247,.7);padding:6px 16px;border-radius:999px;font-family:var(--sans);font-size:.8rem;font-weight:600;cursor:pointer}
   .toggle button.active{background:var(--primary);color:#fff}
-  .pc-list{list-style:none;margin:24px 0 0}
+  .pc-list{list-style:none;margin:24px 0 30px}
   .pc-list li{display:flex;gap:11px;padding:9px 0;font-size:.94rem;border-top:1px solid var(--line)}
   .price-card.pro .pc-list li{border-top:1px solid rgba(251,250,247,.14)}
   .pc-list li::before{content:"\2014";color:var(--primary);font-weight:700}
-  .pc-btn{margin-top:30px;width:100%;padding:14px;border-radius:999px;font-family:var(--sans);font-weight:600;font-size:.92rem;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink);transition:.2s}
+  .pc-btn{margin-top:auto;width:100%;padding:14px;border-radius:999px;font-family:var(--sans);font-weight:600;font-size:.92rem;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink);transition:.2s}
   .pc-btn:hover{background:var(--ink);color:var(--paper)}
   .pc-btn.solid{background:var(--primary);color:#fff;border-color:var(--primary)}
   .pc-btn.solid:hover{background:#fff;color:var(--primary)}
@@ -605,7 +605,7 @@
   </div>
 </section>
 
-<section class="wrap" id="fonctionnalites" style="padding-top:40px">
+<section class="wrap" id="fonctionnalites" style="padding-top:40px;padding-bottom:210px">
   <div class="sec-tag rv"><span class="sec-num">03</span><span class="eyebrow">Ce qu'on fait pour vous</span><hr class="hr-line"></div>
   <div class="feat-row rv"><div class="feat-n">1</div><div class="feat-h">Dix-sept sources, dans une seule App</div><div class="feat-d">RappelConso, ANSM, AMF, Bodacc, Safety Gate EU et bien d'autres, r&eacute;unies et normalis&eacute;es en une seule application coh&eacute;rente.</div></div>
   <div class="feat-row rv"><div class="feat-n">2</div><div class="feat-h">Filtr&eacute; pour vous, et vous seul</div><div class="feat-d">Vous choisissez vos domaines. Vous ne recevez que les alertes qui vous concernent, sans le bruit de tout le reste.</div></div>
@@ -709,11 +709,12 @@
         <div class="pc-amt"><span id="pv">2,99&euro;</span> <small>/ mois</small></div>
         <div class="pc-sub" id="ps">Factur&eacute; 35,88&euro; par an.</div>
         <ul class="pc-list">
+          <li><b>Bilan quotidien :</b> rappels produits, tensions alimentaires, ruptures carburants et disponibilit&eacute;s m&eacute;dicaments ANSM.</li>
           <li><b>Scan code-barres :</b> v&eacute;rifiez en un geste si un produit est rappel&eacute; (RappelConso et Safety Gate EU).</li>
-          <li>ANSM, AMF, Bodacc inclus</li>
-          <li>Safety Gate EU complet</li>
-          <li>Sources environnement et alimentation</li>
-          <li>Prix carburants autour de vous</li>
+          <li><b>Toutes les sources en simultan&eacute; :</b> ANSM, AMF, Bodacc, Safety Gate EU, M&eacute;t&eacute;o France, Hub'Eau, Atmo France, Vigicrues, VigiEau, Prix carburants... (domaines illimit&eacute;s)</li>
+          <li><b>Vos outils de suivi :</b> Ma liste et suivi personnalis&eacute; par mod&egrave;le (voiture, animal).</li>
+          <li><b>Alertes personnalis&eacute;es illimit&eacute;es</b> avec g&eacute;olocalisation activ&eacute;e.</li>
+          <li>R&eacute;siliation &agrave; tout moment.</li>
         </ul>
         <button class="pc-btn solid" onclick="location.href='#telecharger'">Essayer 14 jours gratuit</button>
       </div>
