@@ -553,7 +553,7 @@
       <div class="hero-actions rv" style="transition-delay:.18s">
         <div class="hero-install">
           <div class="qr-block hero-qr">
-            <div class="qr-frame" id="qrFrameHero" aria-label="QR code vers app.veillecitoyenne.fr"></div>
+            <div class="qr-frame" id="qrFrameHero" aria-label="QR code pour t&eacute;l&eacute;charger l'application"></div>
           </div>
           <div class="store-badges hero-stack">
             <a href="https://play.google.com/store/apps/details?id=fr.veillecitoyenne.app" target="_blank" rel="noopener" class="gplay-badge" aria-label="Disponible sur Google Play">
@@ -727,8 +727,8 @@
     <p class="rv" style="transition-delay:.08s">Installez Veille Citoyenne et laissez l'application veiller pour vous.</p>
     <div class="rv" style="transition-delay:.16s">
       <div class="qr-block">
-        <div class="qr-frame" id="qrFrameTarif" aria-label="QR code vers app.veillecitoyenne.fr"></div>
-        <div class="qr-caption">Scannez avec votre t&eacute;l&eacute;phone<br><b>app.veillecitoyenne.fr</b></div>
+        <div class="qr-frame" id="qrFrameTarif" aria-label="QR code pour t&eacute;l&eacute;charger l'application"></div>
+        <div class="qr-caption">Scannez avec votre t&eacute;l&eacute;phone<br><b>Android &amp; iPhone</b></div>
       </div>
       <div class="store-badges" style="justify-content:center">
         <a href="https://play.google.com/store/apps/details?id=fr.veillecitoyenne.app" target="_blank" rel="noopener" class="gplay-badge" aria-label="Disponible sur Google Play">
@@ -864,7 +864,7 @@
   (function(){
     try {
       var qr = qrcode(0, 'M'); // type 0 = auto, niveau correction M (15%)
-      qr.addData('https://app.veillecitoyenne.fr');
+      qr.addData('https://veillecitoyenne.fr/app.html');
       qr.make();
       var svgTag = qr.createSvgTag({ cellSize: 5, margin: 0, scalable: true });
       ['qrFrameHero','qrFrameTarif'].forEach(function(id){

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>T&eacute;l&eacute;charger Veille Citoyenne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#13132A;--bg:#F5F6FA;--paper:#FFFFFF;--primary:#4F55E9;
+    --primary-soft:#ECEDFD;--line:#E2E5EE;--muted:#76737F;
+    --display:"Poppins",-apple-system,sans-serif;--sans:"Inter",-apple-system,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.6;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;-webkit-font-smoothing:antialiased}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:40px 32px;max-width:400px;width:100%;text-align:center;box-shadow:0 8px 30px rgba(15,17,54,.08)}
+  .logo{width:64px;height:64px;border-radius:16px;margin:0 auto 24px;display:block}
+  h1{font-family:var(--display);font-weight:700;font-size:1.4rem;letter-spacing:-.02em;margin-bottom:10px}
+  p{color:var(--muted);font-size:.95rem;margin-bottom:28px}
+  .spinner{width:34px;height:34px;border:3px solid var(--primary-soft);border-top-color:var(--primary);border-radius:50%;margin:0 auto 24px;animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .links{display:flex;flex-direction:column;gap:12px}
+  .lnk{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:14px;text-decoration:none;font-weight:600;font-size:.95rem;transition:transform .2s,background .2s}
+  .lnk-primary{background:var(--ink);color:#fff}
+  .lnk-primary:hover{background:var(--primary);transform:translateY(-2px)}
+  .lnk-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .lnk-ghost:hover{background:var(--bg);transform:translateY(-2px)}
+  .hidden{display:none}
+  .foot{margin-top:24px;font-size:.78rem;color:var(--muted)}
+  .foot a{color:var(--primary);text-decoration:none;font-weight:600}
+</style>
+</head>
+<body>
+  <div class="card">
+    <img src="logo.png" alt="Veille Citoyenne" class="logo">
+    <h1>Veille Citoyenne</h1>
+
+    <div id="redirecting">
+      <div class="spinner"></div>
+      <p>Redirection en cours vers votre magasin d'applications&hellip;</p>
+    </div>
+
+    <div id="manual" class="hidden">
+      <p>Choisissez votre plateforme pour installer l'application&nbsp;:</p>
+      <div class="links">
+        <a class="lnk lnk-primary" href="https://play.google.com/store/apps/details?id=fr.veillecitoyenne.app">Android &middot; Google Play</a>
+        <a class="lnk lnk-ghost" href="https://app.veillecitoyenne.fr">iPhone &middot; Installer via Safari</a>
+      </div>
+    </div>
+
+    <div class="foot">
+      <a href="https://veillecitoyenne.fr">Retour au site</a>
+    </div>
+  </div>
+
+<script>
+  (function(){
+    var PLAY = 'https://play.google.com/store/apps/details?id=fr.veillecitoyenne.app';
+    var PWA  = 'https://app.veillecitoyenne.fr';
+    var ua = navigator.userAgent || navigator.vendor || window.opera || '';
+
+    var isAndroid = /android/i.test(ua);
+    // iPhone / iPad / iPod. iPadOS recent se fait passer pour Mac -> on teste aussi le tactile.
+    var isIOS = /iPad|iPhone|iPod/i.test(ua) || (/Macintosh/i.test(ua) && 'ontouchend' in document);
+
+    var target = null;
+    if (isAndroid) target = PLAY;
+    else if (isIOS) target = PWA;
+
+    if (target) {
+      // Redirection immediate
+      window.location.replace(target);
+      // Filet de securite : si la redirection est bloquee, on affiche les liens apres 1,2s
+      setTimeout(showManual, 1200);
+    } else {
+      // Desktop ou OS non detecte : on montre le choix manuel
+      showManual();
+    }
+
+    function showManual(){
+      var r = document.getElementById('redirecting');
+      var m = document.getElementById('manual');
+      if (r) r.classList.add('hidden');
+      if (m) m.classList.remove('hidden');
+    }
+  })();
+</script>
+</body>
+</html>
