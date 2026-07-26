@@ -70,6 +70,25 @@
     if (isAndroid) target = PLAY;
     else if (isIOS) target = PWA;
 
+    // Comptage anonyme des scans QR par plateforme (aucune donnée personnelle).
+    // fetch keepalive part même si la page redirige juste après, et permet
+    // d'envoyer l'entête Authorization exigé par track-event.
+    try {
+      var platform = isAndroid ? "android" : (isIOS ? "ios" : "desktop");
+      var SB_URL = "https://rtijwwonobnogclugdqs.supabase.co/functions/v1/track-event";
+      var SB_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0aWp3d29ub2Jub2djbHVnZHFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MjUzNDQsImV4cCI6MjA4OTAwMTM0NH0.EoixPpvYLP-Zzoau9X31Qb_zxgz2B1E_q02y7LetQsg";
+      fetch(SB_URL, {
+        method: "POST",
+        keepalive: true,
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": SB_ANON,
+          "Authorization": "Bearer " + SB_ANON
+        },
+        body: JSON.stringify({ event_type: "qr_scan", page: "app.html", meta: { platform: platform } })
+      }).catch(function(){});
+    } catch (e) { /* le comptage ne doit jamais bloquer la redirection */ }
+
     if (target) {
       // Redirection immediate
       window.location.replace(target);
