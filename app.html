@@ -66,36 +66,45 @@
     // iPhone / iPad / iPod. iPadOS recent se fait passer pour Mac -> on teste aussi le tactile.
     var isIOS = /iPad|iPhone|iPod/i.test(ua) || (/Macintosh/i.test(ua) && 'ontouchend' in document);
 
+    var platform = isAndroid ? "android" : (isIOS ? "ios" : "desktop");
     var target = null;
     if (isAndroid) target = PLAY;
     else if (isIOS) target = PWA;
 
-    // Comptage anonyme des scans QR par plateforme (aucune donnée personnelle).
-    // fetch keepalive part même si la page redirige juste après, et permet
-    // d'envoyer l'entête Authorization exigé par track-event.
-    try {
-      var platform = isAndroid ? "android" : (isIOS ? "ios" : "desktop");
-      var SB_URL = "https://rtijwwonobnogclugdqs.supabase.co/functions/v1/track-event";
-      var SB_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0aWp3d29ub2Jub2djbHVnZHFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MjUzNDQsImV4cCI6MjA4OTAwMTM0NH0.EoixPpvYLP-Zzoau9X31Qb_zxgz2B1E_q02y7LetQsg";
-      fetch(SB_URL, {
-        method: "POST",
-        keepalive: true,
-        headers: {
-          "Content-Type": "application/json",
-          "apikey": SB_ANON,
-          "Authorization": "Bearer " + SB_ANON
-        },
-        body: JSON.stringify({ event_type: "qr_scan", page: "app.html", meta: { platform: platform } })
-      }).catch(function(){});
-    } catch (e) { /* le comptage ne doit jamais bloquer la redirection */ }
+    // Comptage anonyme des scans QR par plateforme (aucune donnee personnelle).
+    // On ENVOIE le signal, PUIS on redirige : sinon la redirection tue la requete.
+    function sendScan() {
+      try {
+        var SB_URL = "https://rtijwwonobnogclugdqs.supabase.co/functions/v1/track-event";
+        var SB_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0aWp3d29ub2Jub2djbHVnZHFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MjUzNDQsImV4cCI6MjA4OTAwMTM0NH0.EoixPpvYLP-Zzoau9X31Qb_zxgz2B1E_q02y7LetQsg";
+        return fetch(SB_URL, {
+          method: "POST",
+          keepalive: true,
+          headers: {
+            "Content-Type": "application/json",
+            "apikey": SB_ANON,
+            "Authorization": "Bearer " + SB_ANON
+          },
+          body: JSON.stringify({ event_type: "qr_scan", page: "app.html", meta: { platform: platform } })
+        }).catch(function(){});
+      } catch (e) {
+        return Promise.resolve();
+      }
+    }
+
+    var sent = sendScan();
 
     if (target) {
-      // Redirection immediate
-      window.location.replace(target);
-      // Filet de securite : si la redirection est bloquee, on affiche les liens apres 1,2s
-      setTimeout(showManual, 1200);
+      var done = false;
+      var go = function () { if (done) return; done = true; window.location.replace(target); };
+      // Rediriger des que le signal est parti (generalement < 400 ms)...
+      if (sent && sent.then) { sent.then(go, go); }
+      // ...et garde-fou : jamais plus de 0,5 s d'attente pour l'utilisateur.
+      setTimeout(go, 500);
+      // Filet : si la redirection est bloquee, afficher les liens manuels.
+      setTimeout(showManual, 1500);
     } else {
-      // Desktop ou OS non detecte : on montre le choix manuel
+      // Desktop ou OS non detecte : on montre le choix manuel (signal deja parti).
       showManual();
     }
 
